@@ -2,12 +2,12 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://vidalab.github.io
+url: http://blog.vida.io
 title: Data Visualization Code
 subtitle: Coding data and visualization with Javascript, d3.js, and JSON.
 author: Vida Lab
 simple_search: https://www.google.com/search
-description: Vida Lab on data and visualization
+description: Vida Lab coding data and visualization
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -90,7 +90,7 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
+disqus_short_name: blogvidaio
 disqus_show_comment_count: false
 
 # Google Analytics
