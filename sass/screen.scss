@@ -7,3 +7,21 @@
 @import "base";
 @import "plugins/**/*";
 @import "custom/styles";
+
+.home-page {
+  margin-top: 200px;
+}
+
+.blog-header {
+  background: none;
+  background-color: #ccc;
+  height: 200px;
+  padding: 30px;
+}
+
+.blog-header>h1 {
+  color: #1863a1;
+}
+
+.blog-header>p {
+}
