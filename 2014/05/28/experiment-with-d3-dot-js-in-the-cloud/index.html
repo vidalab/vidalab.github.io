@@ -63,9 +63,140 @@
 
 
         </div>
-        <p>bl.ocks.org is a popular tool within D3 community for sharing data visualization. While it is great to be able to share visualization, bl.ocks.org is not easy to experiment with.</p>
+        <p>bl.ocks.org is a popular tool within D3 community for sharing data visualization. While it is great to be able to share visualization, bl.ocks.org is not easy to experiment with your visualization.</p>
 
-<p>We are building a new offering at vida.io to enable cloud experimentation. You can quickly import and play with the visualization. In this post, we&rsquo;ll use this bl.ocks.org example for d3noob:</p>
+<p>We are building a new offering at vida.io to enable cloud experimentation. You can quickly import and play with the visualization.</p>
+
+<p>Video demo:</p>
+
+<iframe width="420" height="315" src="//www.youtube.com/embed/e1BOJnW9N3Q" frameborder="0" allowfullscreen></iframe>
+
+
+<p>In this post, we&rsquo;ll use this bl.ocks.org example for d3noob:</p>
+
+<p><a href="http://bl.ocks.org/d3noob/5141278">Basic Directional Force Layout Diagram</a></p>
+
+<!-- more -->
+
+
+<p>Here are the steps to import bl.ocks.org to <a href="https://vida.io">vida.io</a>:</p>
+
+<ol>
+<li>Create a new document in vida.io</li>
+<li>Copy stylesheet code to Stylesheet tab</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">path</span><span class="nc">.link</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">fill</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">stroke</span><span class="o">:</span> <span class="m">#666</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">stroke</span><span class="o">-</span><span class="k">width</span><span class="o">:</span> <span class="m">1.5px</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">circle</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">fill</span><span class="o">:</span> <span class="m">#ccc</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">stroke</span><span class="o">:</span> <span class="m">#fff</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">stroke</span><span class="o">-</span><span class="k">width</span><span class="o">:</span> <span class="m">1.5px</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">text</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">fill</span><span class="o">:</span> <span class="m">#000</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">font</span><span class="o">:</span> <span class="m">10px</span> <span class="k">sans-serif</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">pointer</span><span class="o">-</span><span class="n">events</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>Copy javascript code to Javascript tab. No need to copy d3.csv call, data field is already declared by vida.io</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">nodes</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Compute the distinct nodes from the links.</span>
+</span><span class='line'><span class="nx">links</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">link</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">link</span><span class="p">.</span><span class="nx">source</span> <span class="o">=</span> <span class="nx">nodes</span><span class="p">[</span><span class="nx">link</span><span class="p">.</span><span class="nx">source</span><span class="p">]</span> <span class="o">||</span>
+</span><span class='line'>        <span class="p">(</span><span class="nx">nodes</span><span class="p">[</span><span class="nx">link</span><span class="p">.</span><span class="nx">source</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="nx">link</span><span class="p">.</span><span class="nx">source</span><span class="p">});</span>
+</span><span class='line'>    <span class="nx">link</span><span class="p">.</span><span class="nx">target</span> <span class="o">=</span> <span class="nx">nodes</span><span class="p">[</span><span class="nx">link</span><span class="p">.</span><span class="nx">target</span><span class="p">]</span> <span class="o">||</span>
+</span><span class='line'>        <span class="p">(</span><span class="nx">nodes</span><span class="p">[</span><span class="nx">link</span><span class="p">.</span><span class="nx">target</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="nx">link</span><span class="p">.</span><span class="nx">target</span><span class="p">});</span>
+</span><span class='line'>    <span class="nx">link</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="o">+</span><span class="nx">link</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// ...</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">node</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="s2">&quot;translate(&quot;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">;</span> <span class="p">});</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>Rename links variable name to data</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// links.forEach(function(link) {</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">link</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// .links(links) </span>
+</span><span class='line'>
+</span><span class='line'><span class="p">.</span><span class="nx">links</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>Copy force.csv data to Data tab</li>
+<li>Save to refresh the visualization. You can start tweaking parameters of the visualization.</li>
+</ol>
+
+
+<p>Here is the final result document:</p>
+
+<p><a href="https://vida.io/documents/XWsLjooRt6KXadzT9">Directional Force Layout</a></p>
 
       </div>
     </div>
