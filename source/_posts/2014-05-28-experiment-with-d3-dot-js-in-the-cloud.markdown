@@ -7,11 +7,19 @@ author: Phuoc Do
 categories: 
 ---
 
-bl.ocks.org is a popular tool within D3 community for sharing data visualization. While it is great to be able to share visualization, bl.ocks.org is not easy to experiment with.
+bl.ocks.org is a popular tool within D3 community for sharing data visualization. While it is great to be able to share visualization, bl.ocks.org is not easy to experiment with your visualization.
 
-We are building a new offering at vida.io to enable cloud experimentation. You can quickly import and play with the visualization. In this post, we'll use this bl.ocks.org example for d3noob:
+We are building a new offering at vida.io to enable cloud experimentation. You can quickly import and play with the visualization.
+
+Video demo:
+
+<iframe width="420" height="315" src="//www.youtube.com/embed/e1BOJnW9N3Q" frameborder="0" allowfullscreen></iframe>
+
+In this post, we'll use this bl.ocks.org example for d3noob:
 
 [Basic Directional Force Layout Diagram](http://bl.ocks.org/d3noob/5141278)
+
+<!-- more -->
 
 Here are the steps to import bl.ocks.org to [vida.io](https://vida.io):
 
@@ -75,7 +83,3 @@ data.forEach(function(link) {
 Here is the final result document:
 
 [Directional Force Layout](https://vida.io/documents/XWsLjooRt6KXadzT9)
-
-Video demo:
-
-<iframe width="420" height="315" src="//www.youtube.com/embed/e1BOJnW9N3Q" frameborder="0" allowfullscreen></iframe>
