@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Data Visualization Code]]></title>
-  <link href="http://vidalab.github.io/atom.xml" rel="self"/>
-  <link href="http://vidalab.github.io/"/>
-  <updated>2014-05-28T11:22:11-07:00</updated>
-  <id>http://vidalab.github.io/</id>
+  <link href="http://blog.vida.io/atom.xml" rel="self"/>
+  <link href="http://blog.vida.io/"/>
+  <updated>2014-05-28T11:38:53-07:00</updated>
+  <id>http://blog.vida.io/</id>
   <author>
     <name><![CDATA[Vida Lab]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Experiment With d3.js in the Cloud]]></title>
-    <link href="http://vidalab.github.io/2014/05/28/experiment-with-d3-dot-js-in-the-cloud/"/>
+    <link href="http://blog.vida.io/2014/05/28/experiment-with-d3-dot-js-in-the-cloud/"/>
     <updated>2014-05-28T00:12:31-07:00</updated>
-    <id>http://vidalab.github.io/2014/05/28/experiment-with-d3-dot-js-in-the-cloud</id>
+    <id>http://blog.vida.io/2014/05/28/experiment-with-d3-dot-js-in-the-cloud</id>
     <content type="html"><![CDATA[<p>bl.ocks.org is a popular tool within D3 community for sharing data visualization. While it is great to be able to share visualization, bl.ocks.org is not easy to experiment with your visualization.</p>
 
 <p>We are building a new offering at vida.io to enable cloud experimentation. You can quickly import and play with the visualization.</p>

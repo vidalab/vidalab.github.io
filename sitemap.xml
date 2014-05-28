@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://vidalab.github.io/2014/05/28/experiment-with-d3-dot-js-in-the-cloud/</loc>
+        <loc>http://blog.vida.io/2014/05/28/experiment-with-d3-dot-js-in-the-cloud/</loc>
         <lastmod>2014-05-28T11:20:25-07:00</lastmod>
     </url>
     <url>
-        <loc>http://vidalab.github.io/</loc>
+        <loc>http://blog.vida.io/</loc>
         <lastmod>2014-05-28T11:20:25-07:00</lastmod>
     </url>
     <url>
-        <loc>http://vidalab.github.io/posts/</loc>
+        <loc>http://blog.vida.io/posts/</loc>
         <lastmod>2014-05-28T11:20:25-07:00</lastmod>
     </url>
     <url>
-        <loc>http://vidalab.github.io/robots.txt</loc>
+        <loc>http://blog.vida.io/robots.txt</loc>
         <lastmod>2014-05-28T00:21:07-07:00</lastmod>
     </url>
 </urlset>
