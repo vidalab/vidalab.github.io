@@ -11,6 +11,8 @@ I recently got a question from our user on how to embed d3.js visualization into
 
 There comes [vida.io](https://vida.io) embed. Our site provides simple solution. Blog content owner can update post without programmer's intervention. In case of visualization update, he/she can use [vida.io](https://vida.io) editor to quickly make change.
 
+<!-- more -->
+
 Here's an example:
 
 ```html
