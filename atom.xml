@@ -4,7 +4,7 @@
   <title><![CDATA[Data Visualization Code]]></title>
   <link href="http://blog.vida.io/atom.xml" rel="self"/>
   <link href="http://blog.vida.io/"/>
-  <updated>2014-06-01T10:37:58-07:00</updated>
+  <updated>2014-06-01T10:39:28-07:00</updated>
   <id>http://blog.vida.io/</id>
   <author>
     <name><![CDATA[Vida Lab]]></name>
@@ -21,6 +21,9 @@
     <content type="html"><![CDATA[<p>I recently got a question from our user on how to embed d3.js visualization into their blog. A quick search returns several solutions like bl.ocks.org or Wordpress D3 plugin. The first solution requires programmer intervention each time content owner needs to update the site. Wordpress D3 plugin requires installation of plugin.</p>
 
 <p>There comes <a href="https://vida.io">vida.io</a> embed. Our site provides simple solution. Blog content owner can update post without programmer&rsquo;s intervention. In case of visualization update, he/she can use <a href="https://vida.io">vida.io</a> editor to quickly make change.</p>
+
+<!-- more -->
+
 
 <p>Here&rsquo;s an example:</p>
 
