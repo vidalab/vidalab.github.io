@@ -4,7 +4,7 @@
   <title><![CDATA[Data Visualization Code]]></title>
   <link href="http://blog.vida.io/atom.xml" rel="self"/>
   <link href="http://blog.vida.io/"/>
-  <updated>2014-06-08T23:23:04-07:00</updated>
+  <updated>2014-06-08T23:26:27-07:00</updated>
   <id>http://blog.vida.io/</id>
   <author>
     <name><![CDATA[Vida Lab]]></name>
@@ -19,6 +19,9 @@
     <updated>2014-06-08T22:45:06-07:00</updated>
     <id>http://blog.vida.io/2014/06/08/extract-web-data-with-import-dot-io-and-create-d3-visualization</id>
     <content type="html"><![CDATA[<p>With vida.io, you can quickly create new data visualizations. But how would you collect the data? There are now powerful and easy to use tools for this task. In this article, I will show you how to use import.io to extract web data and create d3 map visualization.</p>
+
+<!-- more -->
+
 
 <ol>
 <li>Download <a href="https://import.io/">import.io</a> app.</li>
