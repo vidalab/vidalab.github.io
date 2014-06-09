@@ -9,6 +9,8 @@ categories:
 
 With vida.io, you can quickly create new data visualizations. But how would you collect the data? There are now powerful and easy to use tools for this task. In this article, I will show you how to use import.io to extract web data and create d3 map visualization.
 
+<!-- more -->
+
 1. Download [import.io](https://import.io/) app.
 2. Register your account and and login.
 3. Create a new dataset. This will open a new tab.
