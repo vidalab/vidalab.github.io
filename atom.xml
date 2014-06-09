@@ -4,7 +4,7 @@
   <title><![CDATA[Data Visualization Code]]></title>
   <link href="http://blog.vida.io/atom.xml" rel="self"/>
   <link href="http://blog.vida.io/"/>
-  <updated>2014-06-01T10:39:28-07:00</updated>
+  <updated>2014-06-08T23:23:04-07:00</updated>
   <id>http://blog.vida.io/</id>
   <author>
     <name><![CDATA[Vida Lab]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Extract Web Data With import.io and Create D3 Visualization]]></title>
+    <link href="http://blog.vida.io/2014/06/08/extract-web-data-with-import-dot-io-and-create-d3-visualization/"/>
+    <updated>2014-06-08T22:45:06-07:00</updated>
+    <id>http://blog.vida.io/2014/06/08/extract-web-data-with-import-dot-io-and-create-d3-visualization</id>
+    <content type="html"><![CDATA[<p>With vida.io, you can quickly create new data visualizations. But how would you collect the data? There are now powerful and easy to use tools for this task. In this article, I will show you how to use import.io to extract web data and create d3 map visualization.</p>
+
+<ol>
+<li>Download <a href="https://import.io/">import.io</a> app.</li>
+<li>Register your account and and login.</li>
+<li>Create a new dataset. This will open a new tab.</li>
+<li>Click Add Data menu and select &ldquo;Create new Source&rdquo; from drop down.</li>
+<li>Enter wikipedia data source into import.io URL browser: <a href="http://en.wikipedia.org/wiki/Obesity_in_the_United_States">http://en.wikipedia.org/wiki/Obesity_in_the_United_States</a></li>
+<li>Extract data and upload to import.io. Final data will look like this:<img src="https://s3-us-west-2.amazonaws.com/vida-public/blog/import-io-dataset.png" width="600"></li>
+</ol>
+
+
+<p>Once we are done with you can download data from import.io to CSV format. It is now ready for visualization on <a href="https://vida.io">vida.io</a>. Register an account if you don&rsquo;t have one.</p>
+
+<ol>
+<li>Open <a href="https://vida.io/d3-map">d3-map</a> page.</li>
+<li>Select &ldquo;US Map States &ndash; Choropleth&rdquo; template and clone to your account.</li>
+<li>Rename visualization (e.g. Obesity in the United States) and add description.</li>
+<li>Go to data tab and import downloaded CSV file above. Click Save to save data.</li>
+<li>Go to properties tab, select state_and_district_of_columbia for Map State field and overweight_incl_obese_adults_number for Map Value field.</li>
+<li>Click Save to refresh visualization. Here&rsquo;s the <a href="https://vida.io/documents/bJDg3iQwyXcfngjgf">final visualization</a>:</li>
+</ol>
+
+
+<iframe src="http://embed.vida.io/documents/bJDg3iQwyXcfngjgf" width="800" height="450" seamless frameBorder="0" scrolling="no"></iframe>
+
+
+<p>That&rsquo;s it! Check out more templates on <a href="https://vida.io/explore">Explore</a> section.</p>
+
+<p>Here&rsquo;s a video tutorial that walks you through all the steps above:</p>
+
+<iframe width="600" height="450" src="//www.youtube.com/embed/b4vxnmdZN98" frameborder="0" allowfullscreen></iframe>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Embed d3.js Visualization to Blog]]></title>
