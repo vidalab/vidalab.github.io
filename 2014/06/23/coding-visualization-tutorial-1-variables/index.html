@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Coding Visualization Tutorial 1: Variables - Data Visualization Code</title>
+  <meta name="author" content="Vida Lab">
+
+  
+  <meta name="description" content="Coding Visualization Tutorial 1: Variables written Jun 23rd, 2014 In this tutorial, we want to explore Javascript variables. They are important code &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.vida.io/2014/06/23/coding-visualization-tutorial-1-variables">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Data Visualization Code" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43778465-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Coding Visualization Tutorial 1: Variables</h1>
+        <div class="meta">
+          written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-06-23T14:44:42-07:00" pubdate data-updated="true">Jun 23<span>rd</span>, 2014</time>
+          
+
+
+        </div>
+        <p>In this tutorial, we want to explore Javascript variables. They are important code components. We will review the major variable types that you&rsquo;ll see in a D3 visualization. Then we will dive into visualization examples and play with variables.</p>
+
+<p>You can declare Javascript variables as below:</p>
+
+<!-- more -->
+
+
+<p>(// is comment)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// declare WIDTH variable, the type is integer</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">WIDTH</span> <span class="o">=</span> <span class="mi">800</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// declare HEIGHT variable, the type is integer</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">HEIGHT</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// declare margin as hash with keys are 4 corners of visualization,</span>
+</span><span class='line'><span class="c1">// hash is a key value pair, use key to access value,</span>
+</span><span class='line'><span class="c1">// for example, margin.top returns an integer of value 20</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span><span class="nx">top</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span> <span class="mi">50</span><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// string variable</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">Y_AXIS_LABEL</span> <span class="o">=</span> <span class="s2">&quot;Price ($)&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// array variable</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[];</span>
+</span><span class='line'><span class="c1">// add 2 data points to data array</span>
+</span><span class='line'><span class="nx">data</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="nx">x_axis</span><span class="o">:</span> <span class="s2">&quot;1-May-12&quot;</span><span class="p">},</span> <span class="p">{</span><span class="nx">y_axis</span><span class="o">:</span> <span class="mf">582.13</span><span class="p">});</span>
+</span><span class='line'><span class="nx">data</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="nx">x_axis</span><span class="o">:</span> <span class="s2">&quot;30-May-12&quot;</span><span class="p">},</span> <span class="p">{</span><span class="nx">y_axis</span><span class="o">:</span> <span class="mf">583.98</span><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// boolean variable, 2 values: true or false</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">check</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// variable can be an object which means it can be anything</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">svg</span><span class="p">.</span><span class="nx">axis</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">orient</span><span class="p">(</span><span class="s2">&quot;bottom&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="c1">// think of xAxis as a d3 axis type, it can do some axis magic</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Things you can do with variables:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// for number, arithmetic</span>
+</span><span class='line'><span class="c1">// calculate real width, height of visualization</span>
+</span><span class='line'><span class="c1">// by subtracting margins, number can be subtracted</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nx">WIDTH</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span><span class="p">;</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">HEIGHT</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// you can concatenate string with +</span>
+</span><span class='line'><span class="nx">Y_AXIS_LABEL</span> <span class="o">=</span> <span class="nx">Y_AXIS_LABEL</span> <span class="o">+</span>  <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="s2">&quot;Dollars&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="c1">// now Y_AXIS_LABEL is &quot;Price ($) Dollars&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// access data array</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// data[0] returns 1st data point</span>
+</span><span class='line'><span class="c1">// check if value of 2nd data point is greater than 1st data point</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">check</span> <span class="o">=</span> <span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">y_axis</span> <span class="o">&gt;</span> <span class="nx">data</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">y_axis</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here&rsquo;s an example D3 document you can use:</p>
+
+<p><a href="https://vida.io/documents/9Pst6wmB83BgRZXgx">https://vida.io/documents/9Pst6wmB83BgRZXgx</a></p>
+
+<p>See tutorial video here:</p>
+
+        
+        <hr class="divider-short"/>
+        
+        
+          <section>
+            <h1>Comments</h1>
+            <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+          </section>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/2014/06/08/extract-web-data-with-import-dot-io-and-create-d3-visualization/" title="Previous Post: Extract web data with import.io and create d3 visualization">&laquo; Previous: Extract web data with import.io and create d3 visualization</a>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+    <a href="https://twitter.com/vidatalk"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+
+    
+
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Brought to you by <a href="https://vida.io">vida.io</a>. Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'blogvidaio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.vida.io/2014/06/23/coding-visualization-tutorial-1-variables/';
+        var disqus_url = 'http://blog.vida.io/2014/06/23/coding-visualization-tutorial-1-variables/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+  </body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[Data Visualization Code]]></title>
   <link href="http://blog.vida.io/atom.xml" rel="self"/>
   <link href="http://blog.vida.io/"/>
-  <updated>2014-06-08T23:26:27-07:00</updated>
+  <updated>2014-06-23T16:38:30-07:00</updated>
   <id>http://blog.vida.io/</id>
   <author>
     <name><![CDATA[Vida Lab]]></name>
@@ -12,6 +12,122 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Coding Visualization Tutorial 1: Variables]]></title>
+    <link href="http://blog.vida.io/2014/06/23/coding-visualization-tutorial-1-variables/"/>
+    <updated>2014-06-23T14:44:42-07:00</updated>
+    <id>http://blog.vida.io/2014/06/23/coding-visualization-tutorial-1-variables</id>
+    <content type="html"><![CDATA[<p>In this tutorial, we want to explore Javascript variables. They are important code components. We will review the major variable types that you&rsquo;ll see in a D3 visualization. Then we will dive into visualization examples and play with variables.</p>
+
+<p>You can declare Javascript variables as below:</p>
+
+<!-- more -->
+
+
+<p>(// is comment)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// declare WIDTH variable, the type is integer</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">WIDTH</span> <span class="o">=</span> <span class="mi">800</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// declare HEIGHT variable, the type is integer</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">HEIGHT</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// declare margin as hash with keys are 4 corners of visualization,</span>
+</span><span class='line'><span class="c1">// hash is a key value pair, use key to access value,</span>
+</span><span class='line'><span class="c1">// for example, margin.top returns an integer of value 20</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span><span class="nx">top</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span> <span class="mi">50</span><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// string variable</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">Y_AXIS_LABEL</span> <span class="o">=</span> <span class="s2">&quot;Price ($)&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// array variable</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[];</span>
+</span><span class='line'><span class="c1">// add 2 data points to data array</span>
+</span><span class='line'><span class="nx">data</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="nx">x_axis</span><span class="o">:</span> <span class="s2">&quot;1-May-12&quot;</span><span class="p">},</span> <span class="p">{</span><span class="nx">y_axis</span><span class="o">:</span> <span class="mf">582.13</span><span class="p">});</span>
+</span><span class='line'><span class="nx">data</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="nx">x_axis</span><span class="o">:</span> <span class="s2">&quot;30-May-12&quot;</span><span class="p">},</span> <span class="p">{</span><span class="nx">y_axis</span><span class="o">:</span> <span class="mf">583.98</span><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// boolean variable, 2 values: true or false</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">check</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// variable can be an object which means it can be anything</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">svg</span><span class="p">.</span><span class="nx">axis</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">orient</span><span class="p">(</span><span class="s2">&quot;bottom&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="c1">// think of xAxis as a d3 axis type, it can do some axis magic</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Things you can do with variables:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// for number, arithmetic</span>
+</span><span class='line'><span class="c1">// calculate real width, height of visualization</span>
+</span><span class='line'><span class="c1">// by subtracting margins, number can be subtracted</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nx">WIDTH</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span><span class="p">;</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">HEIGHT</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// you can concatenate string with +</span>
+</span><span class='line'><span class="nx">Y_AXIS_LABEL</span> <span class="o">=</span> <span class="nx">Y_AXIS_LABEL</span> <span class="o">+</span>  <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="s2">&quot;Dollars&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="c1">// now Y_AXIS_LABEL is &quot;Price ($) Dollars&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// access data array</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// data[0] returns 1st data point</span>
+</span><span class='line'><span class="c1">// check if value of 2nd data point is greater than 1st data point</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">check</span> <span class="o">=</span> <span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">y_axis</span> <span class="o">&gt;</span> <span class="nx">data</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">y_axis</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here&rsquo;s an example D3 document you can use:</p>
+
+<p><a href="https://vida.io/documents/9Pst6wmB83BgRZXgx">https://vida.io/documents/9Pst6wmB83BgRZXgx</a></p>
+
+<p>See tutorial video here:</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Extract Web Data With import.io and Create D3 Visualization]]></title>
