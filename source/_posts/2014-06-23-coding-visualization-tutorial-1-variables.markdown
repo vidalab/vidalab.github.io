@@ -69,7 +69,8 @@ var check = data[0].y_axis > data[1].y_axis;
 
 Here's an example D3 document you can use:
 
-https://vida.io/documents/9Pst6wmB83BgRZXgx
+https://vida.io/documents/eSGFToFs3gXk4LEwP
 
 See tutorial video here:
 
+<iframe width="420" height="315" src="//www.youtube.com/embed/5Jg7RLZC6s8" frameborder="0" allowfullscreen></iframe>
