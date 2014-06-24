@@ -32,6 +32,8 @@ var svg = canvas_svg.append("svg");
 
 ```
 
+<!-- more -->
+
 You can call functions in a chain. It's commonly used in D3 code.
 
 ```javascript

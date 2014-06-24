@@ -11,8 +11,6 @@ In this tutorial, we want to explore Javascript variables. They are important co
 
 You can declare Javascript variables as below:
 
-<!-- more -->
-
 (// is comment)
 
 ```javascript
@@ -46,6 +44,8 @@ var xAxis = d3.svg.axis()
     .orient("bottom");
 // think of xAxis as a d3 axis type, it can do some axis magic
 ```
+
+<!-- more -->
 
 Things you can do with variables:
 
