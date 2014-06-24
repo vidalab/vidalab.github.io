@@ -4,7 +4,7 @@
   <title><![CDATA[Data Visualization Code]]></title>
   <link href="http://blog.vida.io/atom.xml" rel="self"/>
   <link href="http://blog.vida.io/"/>
-  <updated>2014-06-23T16:38:30-07:00</updated>
+  <updated>2014-06-23T17:12:59-07:00</updated>
   <id>http://blog.vida.io/</id>
   <author>
     <name><![CDATA[Vida Lab]]></name>
@@ -123,9 +123,12 @@
 
 <p>Here&rsquo;s an example D3 document you can use:</p>
 
-<p><a href="https://vida.io/documents/9Pst6wmB83BgRZXgx">https://vida.io/documents/9Pst6wmB83BgRZXgx</a></p>
+<p><a href="https://vida.io/documents/eSGFToFs3gXk4LEwP">https://vida.io/documents/eSGFToFs3gXk4LEwP</a></p>
 
 <p>See tutorial video here:</p>
+
+<iframe width="420" height="315" src="//www.youtube.com/embed/5Jg7RLZC6s8" frameborder="0" allowfullscreen></iframe>
+
 ]]></content>
   </entry>
   
