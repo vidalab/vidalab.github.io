@@ -4,7 +4,7 @@
   <title><![CDATA[Data Visualization Code]]></title>
   <link href="http://blog.vida.io/atom.xml" rel="self"/>
   <link href="http://blog.vida.io/"/>
-  <updated>2014-06-24T14:06:19-07:00</updated>
+  <updated>2014-06-25T11:54:00-07:00</updated>
   <id>http://blog.vida.io/</id>
   <author>
     <name><![CDATA[Vida Lab]]></name>
@@ -135,7 +135,7 @@
 <span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;canvas-svg&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;svg</span> <span class="na">width=</span><span class="s">&quot;800&quot;</span> <span class="na">height=</span><span class="s">&quot;450&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;g</span> <span class="na">transform</span><span class="err">&quot;</span><span class="na">translate</span><span class="err">(</span><span class="na">50</span><span class="err">,</span><span class="na">20</span><span class="err">)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;g</span> <span class="na">transform=</span><span class="s">&quot;translate(50,20)&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'>      <span class="c">&lt;!-- visualization elements --&gt;</span>
 </span><span class='line'>    <span class="nt">&lt;/g&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;/svg&gt;</span>
