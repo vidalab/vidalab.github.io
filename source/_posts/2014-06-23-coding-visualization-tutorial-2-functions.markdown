@@ -77,7 +77,7 @@ After that, you'll get canvas-svg div like below:
 
 <div id="canvas-svg">
   <svg width="800" height="450">
-    <g transform"translate(50,20)">
+    <g transform="translate(50,20)">
       <!-- visualization elements -->
     </g>
   </svg>
