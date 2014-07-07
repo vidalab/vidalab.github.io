@@ -13,11 +13,11 @@ It's a frequently asked question. You can read several discussions on the topic 
 
 With carefully crafted data processing, we can get decent story from data. But this solution doesn't provide a lot of flexibility to experiment with data on the fly. We need a more streamlined workflow. Less friction can spark interesting data innovation.
 
-I recently delved deep into Google BigQuery. It's a great tool to handle big dataset.
+I recently delved deep into Google BigQuery. It's a great tool to handle big dataset. It's definitely going to help us handle big dataset for D3.js.
 
 <!-- more -->
 
-We will use New York Taxi dataset hosted on Google BigQuery. It is 4+ GB and has more than 350 million rows in 2 tables. In this article, I want to show you how to query it on the fly. Then use D3.js to create a line chart of total trip amount over time. You can explore the dataset here:
+I will use New York Taxi dataset hosted on Google BigQuery. It is 4+ GB and has more than 350 million rows in 2 tables. In this article, I want to show you how to query it on the fly. Then use D3.js to create a line chart of total trip amount over time. You can explore the dataset here:
 
 https://bigquery.cloud.google.com/table/833682135931:nyctaxi.trip_fare?pli=1
 
