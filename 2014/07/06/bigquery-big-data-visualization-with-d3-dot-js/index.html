@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>BigQuery Big Data Visualization With D3.js - Data Visualization Code</title>
+  <meta name="author" content="Vida Lab">
+
+  
+  <meta name="description" content="BigQuery Big Data Visualization With D3.js written Jul 6th, 2014 How to handle large dataset with D3.js? It&rsquo;s a frequently asked question. You &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.vida.io/2014/07/06/bigquery-big-data-visualization-with-d3-dot-js">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Data Visualization Code" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43778465-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>BigQuery Big Data Visualization With D3.js</h1>
+        <div class="meta">
+          written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-07-06T21:58:05-07:00" pubdate data-updated="true">Jul 6<span>th</span>, 2014</time>
+          
+
+
+        </div>
+        <p>How to handle large dataset with D3.js?</p>
+
+<p>It&rsquo;s a frequently asked question. You can read several discussions on the topic <a href="http://stackoverflow.com/questions/19144369/how-to-handle-large-dataset-in-d3js">here</a>, <a href="http://stackoverflow.com/questions/18244995/d3-how-to-show-large-dataset">here</a>, and <a href="https://groups.google.com/forum/#!topic/d3-js/aRKFtUaE5h4">here</a>. So far, the best solution is to process data to a smaller dataset. Then use D3.js to visualize.</p>
+
+<p>With carefully crafted data processing, we can get decent story from data. But this solution doesn&rsquo;t provide a lot of flexibility to experiment with data on the fly. We need a more streamlined workflow. Less friction can spark interesting data innovation.</p>
+
+<p>I recently delved deep into Google BigQuery. It&rsquo;s a great tool to handle big dataset.</p>
+
+<!-- more -->
+
+
+<p>We will use New York Taxi dataset hosted on Google BigQuery. It is 4+ GB and has more than 350 million rows in 2 tables. In this article, I want to show you how to query it on the fly. Then use D3.js to create a line chart of total trip amount over time. You can explore the dataset here:</p>
+
+<p><a href="https://bigquery.cloud.google.com/table/833682135931:nyctaxi.trip_fare?pli=1">https://bigquery.cloud.google.com/table/833682135931:nyctaxi.trip_fare?pli=1</a></p>
+
+<p>BigQuery has full SQL support. So we can run aggregate query directly on dataset. We&rsquo;ll group by month/year and sum total_amount column. It takes less than 5 seconds.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'>  <span class="n">CONCAT</span><span class="p">(</span><span class="n">CONCAT</span><span class="p">(</span><span class="n">STRING</span><span class="p">(</span><span class="k">MONTH</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="p">(</span><span class="n">pickup_datetime</span><span class="p">))),</span> <span class="ss">&quot;/&quot;</span><span class="p">),</span> <span class="n">STRING</span><span class="p">(</span><span class="k">YEAR</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="p">(</span><span class="n">pickup_datetime</span><span class="p">))))</span> <span class="k">AS</span> <span class="n">time</span><span class="p">,</span>
+</span><span class='line'>  <span class="k">SUM</span><span class="p">(</span><span class="nb">INTEGER</span><span class="p">(</span><span class="n">total_amount</span><span class="p">))</span> <span class="k">AS</span> <span class="n">total_amount</span>
+</span><span class='line'><span class="k">FROM</span>
+</span><span class='line'>  <span class="p">[</span><span class="mi">833682135931</span><span class="p">:</span><span class="n">nyctaxi</span><span class="p">.</span><span class="n">trip_fare</span><span class="p">]</span>
+</span><span class='line'><span class="k">GROUP</span> <span class="k">BY</span>
+</span><span class='line'>  <span class="n">time</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I export my result data to CSV and show here:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">time</span><span class="p">,</span><span class="n">total_amount</span>
+</span><span class='line'><span class="mi">8</span><span class="o">/</span><span class="mi">2013</span><span class="p">,</span><span class="mi">57131656</span>
+</span><span class='line'><span class="mi">9</span><span class="o">/</span><span class="mi">2013</span><span class="p">,</span><span class="mi">127640676</span>
+</span><span class='line'><span class="mi">2</span><span class="o">/</span><span class="mi">2013</span><span class="p">,</span><span class="mi">60858916</span>
+</span><span class='line'><span class="mi">5</span><span class="o">/</span><span class="mi">2013</span><span class="p">,</span><span class="mi">69475856</span>
+</span><span class='line'><span class="mi">1</span><span class="o">/</span><span class="mi">2013</span><span class="p">,</span><span class="mi">64333338</span>
+</span><span class='line'><span class="mi">10</span><span class="o">/</span><span class="mi">2013</span><span class="p">,</span><span class="mi">67093673</span>
+</span><span class='line'><span class="mi">11</span><span class="o">/</span><span class="mi">2013</span><span class="p">,</span><span class="mi">63805595</span>
+</span><span class='line'><span class="mi">3</span><span class="o">/</span><span class="mi">2013</span><span class="p">,</span><span class="mi">69752928</span>
+</span><span class='line'><span class="mi">12</span><span class="o">/</span><span class="mi">2013</span><span class="p">,</span><span class="mi">63510475</span>
+</span><span class='line'><span class="mi">7</span><span class="o">/</span><span class="mi">2013</span><span class="p">,</span><span class="mi">62018079</span>
+</span><span class='line'><span class="mi">6</span><span class="o">/</span><span class="mi">2013</span><span class="p">,</span><span class="mi">65204371</span>
+</span><span class='line'><span class="mi">4</span><span class="o">/</span><span class="mi">2013</span><span class="p">,</span><span class="mi">67594555</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Since I don&rsquo;t own this dataset, I can&rsquo;t query it on the fly directly. So I&rsquo;m going to save this view to my account. But if you are the owner, you can run the above query directly. I&rsquo;ll be using the following query for the saved view:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="p">[</span><span class="n">nyc_taxi</span><span class="p">.</span><span class="n">total_amount_month</span><span class="p">]</span> <span class="k">LIMIT</span> <span class="mi">1000</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now we can construct our D3.js Javascript code:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">onClientLoadHandler</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// setup D3.js</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// run BigQuery</span>
+</span><span class='line'>  <span class="kd">function</span> <span class="nx">runQuery</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">gapi</span><span class="p">.</span><span class="nx">client</span><span class="p">.</span><span class="nx">bigquery</span><span class="p">.</span><span class="nx">jobs</span><span class="p">.</span><span class="nx">query</span><span class="p">({</span>
+</span><span class='line'>      <span class="s1">&#39;projectId&#39;</span><span class="o">:</span> <span class="s2">&quot;master-smithy-633&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s1">&#39;timeoutMs&#39;</span><span class="o">:</span> <span class="s1">&#39;30000&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="c1">// use your own query here</span>
+</span><span class='line'>      <span class="s1">&#39;query&#39;</span><span class="o">:</span> <span class="s1">&#39;SELECT * FROM [nyc_taxi.total_amount_month] LIMIT 1000;&#39;</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>    <span class="nx">request</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">bqData</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">response</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">bqData</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="s2">&quot;date&quot;</span><span class="o">:</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s2">&quot;%m/%Y&quot;</span><span class="p">).</span><span class="nx">parse</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">f</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">v</span><span class="p">),</span>
+</span><span class='line'>            <span class="s2">&quot;amount&quot;</span><span class="o">:</span> <span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">f</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">v</span><span class="p">});</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">drawLineChart</span><span class="p">(</span><span class="nx">bqData</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// authenticate to BigQuery, it asks for your Google credential to perform oauth</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s1">&#39;client_id&#39;</span><span class="o">:</span> <span class="s1">&#39;262329615658-hhd3mjl4rkcq85njprr33s6hbau97bma.apps.googleusercontent.com&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s1">&#39;scope&#39;</span><span class="o">:</span> <span class="s1">&#39;https://www.googleapis.com/auth/bigquery&#39;</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'>  <span class="nx">gapi</span><span class="p">.</span><span class="nx">auth</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">runQuery</span><span class="p">();</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">function</span> <span class="nx">drawLineChart</span><span class="p">(</span><span class="nx">bqData</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// D3.js line chart drawing code</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// run client library load</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">getScript</span><span class="p">(</span><span class="s2">&quot;https://apis.google.com/js/client.js&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">onClientLoadHandler</span><span class="p">();</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&rsquo;s it. You can check out full code example here. You&rsquo;ll need to clone it and use your client_id key. Make sure your key allows vida.io origin.</p>
+
+<p><a href="https://vida.io/documents/icwvp4qcCbEkYW2ve">https://vida.io/documents/icwvp4qcCbEkYW2ve</a></p>
+
+<p><img src="http://i.imgur.com/4uem4Qm.png?1" alt="BigQuery Line Chart" /></p>
+
+        
+        <hr class="divider-short"/>
+        
+        
+          <section>
+            <h1>Comments</h1>
+            <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+          </section>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/2014/06/23/coding-visualization-tutorial-2-functions/" title="Previous Post: Coding Visualization Tutorial 2: Functions">&laquo; Previous: Coding Visualization Tutorial 2: Functions</a>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+    <a href="https://twitter.com/vidatalk"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+
+    
+
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Brought to you by <a href="https://vida.io">vida.io</a>. Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'blogvidaio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.vida.io/2014/07/06/bigquery-big-data-visualization-with-d3-dot-js/';
+        var disqus_url = 'http://blog.vida.io/2014/07/06/bigquery-big-data-visualization-with-d3-dot-js/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+  </body>
+</html>
