@@ -19,6 +19,8 @@ I recently delved deep into Google BigQuery. It's a great tool to handle big dat
 
 I will use New York Taxi dataset hosted on Google BigQuery. It is 4+ GB and has more than 350 million rows in 2 tables. In this article, I want to show you how to query it on the fly. Then use D3.js to create a line chart of total trip amount over time. You can explore the dataset here:
 
+(You'll need to setup BigQuery account with one project to see public table)
+
 https://bigquery.cloud.google.com/table/833682135931:nyctaxi.trip_fare?pli=1
 
 BigQuery has full SQL support. So we can run aggregate query directly on dataset. We'll group by month/year and sum total_amount column. It takes less than 5 seconds.
