@@ -4,7 +4,7 @@
   <title><![CDATA[Data Visualization Code]]></title>
   <link href="http://blog.vida.io/atom.xml" rel="self"/>
   <link href="http://blog.vida.io/"/>
-  <updated>2014-07-06T23:31:52-07:00</updated>
+  <updated>2014-08-28T15:20:54-07:00</updated>
   <id>http://blog.vida.io/</id>
   <author>
     <name><![CDATA[Vida Lab]]></name>
@@ -12,6 +12,114 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Making D3.js Reusable With Templates]]></title>
+    <link href="http://blog.vida.io/2014/08/28/making-d3-dot-js-reusable-with-templates/"/>
+    <updated>2014-08-28T13:48:49-07:00</updated>
+    <id>http://blog.vida.io/2014/08/28/making-d3-dot-js-reusable-with-templates</id>
+    <content type="html"><![CDATA[<p>D3.js is an awesome library for visualization. However, it requires a developer to perform the magic. So far, it has not been so popular with traditional data analysts.</p>
+
+<p>At <a href="https://vida.io">vida.io</a>, we set out to bring D3.js to less technically savvy users. We want to enable them to create amazing data visualizations with D3.js. Our approach is template.</p>
+
+<!-- more -->
+
+
+<p><b>What is a D3.js Template?</b></p>
+
+<p>It&rsquo;s a D3.js visualization that you can reuse by just plugging in new data. For example, one of our customers want to be able to compare metrics of two different entities. We made a template with multiple side-by-side bar charts. Below are comparisons of India vs. China and Apple vs. Orange.</p>
+
+<div style="width: 100%; float: left">
+<div style="float: left; width: 45%"><a href="https://vida.io/documents/ZCzewTza4ZSzMWSBG">India vs. China<br><img src="http://i.imgur.com/gBZEQHe.png?1" width="100%" title="India vs. China" /></a></div>
+
+<div style="float: right; width: 45%"><a href="https://vida.io/documents/7Ynhpabosba6uABXD">Apple vs. Orange<br><img src="http://i.imgur.com/K8k4I6A.png" width="100%" title="Apple vs. Orange" /></a></div>
+</div>
+
+
+
+
+<br>
+
+
+<p>Both visualizations share the same JavaScript and Stylesheet. User can clone India vs. China template, add new data, update colors to get Apple vs. Orange.</p>
+
+<p>Data for India vs. China:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">[</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;chart_title&quot;</span><span class="p">:</span> <span class="s2">&quot;Population&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;billion&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;India&quot;</span><span class="p">:</span> <span class="mf">1.22</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;China&quot;</span><span class="p">:</span> <span class="mf">1.36</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="err">//</span> <span class="err">...</span>
+</span><span class='line'><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Data for Apple vs. Orange:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">[</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;chart_title&quot;</span><span class="p">:</span> <span class="s2">&quot;Calories&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;Apple&quot;</span><span class="p">:</span> <span class="mi">52</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;Orange&quot;</span><span class="p">:</span> <span class="mi">47</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="err">//</span> <span class="err">...</span>
+</span><span class='line'><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can see data format for two visualizations are identical.</p>
+
+<p><b>Reuse a D3.js Template</b></p>
+
+<p>You can create new D3.js visualizations in 3 quick steps with <a href="https://vida.io">vida.io</a> tool.</p>
+
+<ol>
+<li>Clone a visualization template</li>
+<li>Apply new data</li>
+<li>Update styling and colors</li>
+</ol>
+
+
+<p><b>More Templates</b></p>
+
+<p>Here&rsquo;s a complex template used by the <a href="https://www.wabusinessalliance.org/">Washington Business Alliance</a> to display metrics of US states.</p>
+
+<div style="width: 100%; float: left">
+<div style="float: left; width: 33%"><a href="https://vida.io/documents/4vZ9mRGyepoyQxFcK">Obesity<br><img src="http://i.imgur.com/UgFqLF0.png" width="100%" title="Obesity" /></a></div>
+
+<div style="float: left; width: 33%"><a href="https://vida.io/documents/69un8KK53pakRQtLZ">Wine Consumption<br><img src="http://i.imgur.com/u2GqAJO.png" width="100%" title="Wine Consumption" /></a></div>
+
+<div style="float: right; width: 33%"><a href="https://vida.io/documents/5pQED7H5Lym36xsuC">Hockey Players per 100k residents<br><img src="http://i.imgur.com/0HOfp4a.png" width="100%" title="Hockey Players" /></a></div>
+</div>
+
+
+<p>Check out the list of templates on <a href="https://vida.io/explore">vida.io/explore</a>. If you need more, contact us at <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#x63;&#111;&#110;&#116;&#x61;&#x63;&#116;&#x40;&#118;&#x69;&#100;&#x61;&#x2e;&#105;&#x6f;&#x2e;">&#99;&#111;&#x6e;&#116;&#97;&#99;&#116;&#x40;&#x76;&#105;&#x64;&#97;&#46;&#x69;&#111;&#46;</a></p>
+
+<p>With template, D3.js is easy to use, reuseable, and affordable. Add it to your toolbox for business intelligence and data analysis!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[BigQuery Big Data Visualization With D3.js]]></title>

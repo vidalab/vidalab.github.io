@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Making D3.js Reusable With Templates - Data Visualization Code</title>
+  <meta name="author" content="Vida Lab">
+
+  
+  <meta name="description" content="Making D3.js Reusable With Templates written Aug 28th, 2014 D3.js is an awesome library for visualization. However, it requires a developer to &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.vida.io/2014/08/28/making-d3-dot-js-reusable-with-templates">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Data Visualization Code" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43778465-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Making D3.js Reusable With Templates</h1>
+        <div class="meta">
+          written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-08-28T13:48:49-07:00" pubdate data-updated="true">Aug 28<span>th</span>, 2014</time>
+          
+
+
+        </div>
+        <p>D3.js is an awesome library for visualization. However, it requires a developer to perform the magic. So far, it has not been so popular with traditional data analysts.</p>
+
+<p>At <a href="https://vida.io">vida.io</a>, we set out to bring D3.js to less technically savvy users. We want to enable them to create amazing data visualizations with D3.js. Our approach is template.</p>
+
+<!-- more -->
+
+
+<p><b>What is a D3.js Template?</b></p>
+
+<p>It&rsquo;s a D3.js visualization that you can reuse by just plugging in new data. For example, one of our customers want to be able to compare metrics of two different entities. We made a template with multiple side-by-side bar charts. Below are comparisons of India vs. China and Apple vs. Orange.</p>
+
+<div style="width: 100%; float: left">
+<div style="float: left; width: 45%"><a href="https://vida.io/documents/ZCzewTza4ZSzMWSBG">India vs. China<br><img src="http://i.imgur.com/gBZEQHe.png?1" width="100%" title="India vs. China" /></a></div>
+
+<div style="float: right; width: 45%"><a href="https://vida.io/documents/7Ynhpabosba6uABXD">Apple vs. Orange<br><img src="http://i.imgur.com/K8k4I6A.png" width="100%" title="Apple vs. Orange" /></a></div>
+</div>
+
+
+
+
+<br>
+
+
+<p>Both visualizations share the same JavaScript and Stylesheet. User can clone India vs. China template, add new data, update colors to get Apple vs. Orange.</p>
+
+<p>Data for India vs. China:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">[</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;chart_title&quot;</span><span class="p">:</span> <span class="s2">&quot;Population&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;billion&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;India&quot;</span><span class="p">:</span> <span class="mf">1.22</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;China&quot;</span><span class="p">:</span> <span class="mf">1.36</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="err">//</span> <span class="err">...</span>
+</span><span class='line'><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Data for Apple vs. Orange:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">[</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;chart_title&quot;</span><span class="p">:</span> <span class="s2">&quot;Calories&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;Apple&quot;</span><span class="p">:</span> <span class="mi">52</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;Orange&quot;</span><span class="p">:</span> <span class="mi">47</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="err">//</span> <span class="err">...</span>
+</span><span class='line'><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can see data format for two visualizations are identical.</p>
+
+<p><b>Reuse a D3.js Template</b></p>
+
+<p>You can create new D3.js visualizations in 3 quick steps with <a href="https://vida.io">vida.io</a> tool.</p>
+
+<ol>
+<li>Clone a visualization template</li>
+<li>Apply new data</li>
+<li>Update styling and colors</li>
+</ol>
+
+
+<p><b>More Templates</b></p>
+
+<p>Here&rsquo;s a complex template used by the <a href="https://www.wabusinessalliance.org/">Washington Business Alliance</a> to display metrics of US states.</p>
+
+<div style="width: 100%; float: left">
+<div style="float: left; width: 33%"><a href="https://vida.io/documents/4vZ9mRGyepoyQxFcK">Obesity<br><img src="http://i.imgur.com/UgFqLF0.png" width="100%" title="Obesity" /></a></div>
+
+<div style="float: left; width: 33%"><a href="https://vida.io/documents/69un8KK53pakRQtLZ">Wine Consumption<br><img src="http://i.imgur.com/u2GqAJO.png" width="100%" title="Wine Consumption" /></a></div>
+
+<div style="float: right; width: 33%"><a href="https://vida.io/documents/5pQED7H5Lym36xsuC">Hockey Players per 100k residents<br><img src="http://i.imgur.com/0HOfp4a.png" width="100%" title="Hockey Players" /></a></div>
+</div>
+
+
+<p>Check out the list of templates on <a href="https://vida.io/explore">vida.io/explore</a>. If you need more, contact us at <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#x63;&#111;&#110;&#116;&#x61;&#x63;&#116;&#x40;&#118;&#x69;&#100;&#x61;&#x2e;&#105;&#x6f;&#x2e;">&#99;&#111;&#x6e;&#116;&#97;&#99;&#116;&#x40;&#x76;&#105;&#x64;&#97;&#46;&#x69;&#111;&#46;</a></p>
+
+<p>With template, D3.js is easy to use, reuseable, and affordable. Add it to your toolbox for business intelligence and data analysis!</p>
+
+        
+        <hr class="divider-short"/>
+        
+        
+          <section>
+            <h1>Comments</h1>
+            <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+          </section>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/2014/07/06/bigquery-big-data-visualization-with-d3-dot-js/" title="Previous Post: BigQuery Big Data Visualization with D3.js">&laquo; Previous: BigQuery Big Data Visualization with D3.js</a>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+    <a href="https://twitter.com/vidatalk"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+
+    
+
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Brought to you by <a href="https://vida.io">vida.io</a>. Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'blogvidaio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.vida.io/2014/08/28/making-d3-dot-js-reusable-with-templates/';
+        var disqus_url = 'http://blog.vida.io/2014/08/28/making-d3-dot-js-reusable-with-templates/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+  </body>
+</html>
