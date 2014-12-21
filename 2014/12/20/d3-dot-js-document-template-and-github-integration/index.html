@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>D3.js Document Template and GitHub Integration - Data Visualization Code</title>
+  <meta name="author" content="Vida Lab">
+
+  
+  <meta name="description" content="D3.js Document Template and GitHub Integration written Dec 20th, 2014 In this blog post, we want to show you integration between vida.io cloud &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.vida.io/2014/12/20/d3-dot-js-document-template-and-github-integration">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Data Visualization Code" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43778465-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>D3.js Document Template and GitHub Integration</h1>
+        <div class="meta">
+          written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-12-20T18:25:29-08:00" pubdate data-updated="true">Dec 20<span>th</span>, 2014</time>
+          
+
+
+        </div>
+        <p>In this blog post, we want to show you integration between vida.io cloud editor and GitHub. git is a great source control tool to keep track of complex visualization project.</p>
+
+<p>You can use import your git repository for instant view and sharing in the cloud.</p>
+
+<!-- more -->
+
+
+<p>vida.io use a new repository format. We made a few enhancement on top of GitHub gist:</p>
+
+<ol>
+<li>Full git repo (issue tracking, pull request)</li>
+<li>Separation of data and code</li>
+<li>Support for visualization properties</li>
+</ol>
+
+
+<p>This is done through manifest.json file. Here&rsquo;s a manifest.json for Line chart template:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;document.json&quot;</span><span class="p">],</span>
+</span><span class='line'>  <span class="nt">&quot;javascript&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;document.js&quot;</span><span class="p">],</span>
+</span><span class='line'>  <span class="nt">&quot;stylesheet&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;document.css&quot;</span><span class="p">],</span>
+</span><span class='line'>  <span class="nt">&quot;html&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;document.html&quot;</span><span class="p">],</span>
+</span><span class='line'>  <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>    <span class="p">{</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Data Column 0 (X Axis)&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;data0&quot;</span><span class="p">,</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;data_column&quot;</span><span class="p">,</span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">},</span>
+</span><span class='line'>    <span class="p">{</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Data Column 1 (Y Axis)&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;data1&quot;</span><span class="p">,</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;data_column&quot;</span><span class="p">,</span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">},</span>
+</span><span class='line'>    <span class="p">{</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Label 0&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;label0&quot;</span><span class="p">,</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="s2">&quot;label 0&quot;</span><span class="p">},</span>
+</span><span class='line'>    <span class="p">{</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Label 1&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;label1&quot;</span><span class="p">,</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="s2">&quot;label 1&quot;</span><span class="p">},</span>
+</span><span class='line'>    <span class="p">{</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Color 0&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;color0&quot;</span><span class="p">,</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;color&quot;</span><span class="p">,</span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="s2">&quot;#0f608b&quot;</span><span class="p">},</span>
+</span><span class='line'>    <span class="p">{</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Color 1&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;color1&quot;</span><span class="p">,</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;color&quot;</span><span class="p">,</span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="s2">&quot;#99ccff&quot;</span><span class="p">},</span>
+</span><span class='line'>    <span class="p">{</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Width&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;width&quot;</span><span class="p">,</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;number&quot;</span><span class="p">,</span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="mi">800</span><span class="p">},</span>
+</span><span class='line'>    <span class="p">{</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Height&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;height&quot;</span><span class="p">,</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;number&quot;</span><span class="p">,</span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="mi">400</span><span class="p">}</span>
+</span><span class='line'>  <span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We host the document template repository on GitHub. You can clone it to get started.</p>
+
+<p><a href="https://github.com/vidalab/document_template">https://github.com/vidalab/document_template</a></p>
+
+<p>We have created a <a href="http://bl.ocks.org/d3noob/5141278">Directional Force Layout example (from d3noob)</a> repository:</p>
+
+<p><a href="https://github.com/dnprock/document_template">https://github.com/dnprock/document_template</a></p>
+
+<p>You can import your GitHub repository into vida.io:</p>
+
+<ol>
+<li>Login to vida.io</li>
+<li>Select D3 Documents</li>
+<li>Click New Document</li>
+<li>Select Import GitHub type</li>
+<li>Paste your GitHub repository URL (e.g. <a href="https://github.com/dnprock/document_template">https://github.com/dnprock/document_template</a>)</li>
+<li>Click Import</li>
+</ol>
+
+
+<p>Viola! Now you have a force layout live in the cloud. You can share with your team and customers.</p>
+
+        
+        <hr class="divider-short"/>
+        
+        
+          <section>
+            <h1>Comments</h1>
+            <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+          </section>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/2014/08/28/making-d3-dot-js-reusable-with-templates/" title="Previous Post: Making D3.js Reusable with Templates">&laquo; Previous: Making D3.js Reusable with Templates</a>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+    <a href="https://twitter.com/vidatalk"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+
+    
+
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Brought to you by <a href="https://vida.io">vida.io</a>. Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'blogvidaio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.vida.io/2014/12/20/d3-dot-js-document-template-and-github-integration/';
+        var disqus_url = 'http://blog.vida.io/2014/12/20/d3-dot-js-document-template-and-github-integration/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+  </body>
+</html>
