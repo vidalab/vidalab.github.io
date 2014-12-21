@@ -8,11 +8,11 @@ categories:
 
 In this blog post, we want to show you integration between vida.io cloud editor and GitHub. git is a great source control tool to keep track of complex visualization project.
 
-You can use import your git repository for instant view and sharing in the cloud.
+You can import your git repository for instant view and sharing in the cloud.
 
 <!-- more -->
 
-vida.io use a new repository format. We made a few enhancement on top of GitHub gist:
+vida.io use a new repository format. We made a few enhancements:
 
 1. Full git repo (issue tracking, pull request)
 2. Separation of data and code
@@ -43,7 +43,7 @@ We host the document template repository on GitHub. You can clone it to get star
 
 https://github.com/vidalab/document_template
 
-We have created a [Directional Force Layout example (from d3noob)](http://bl.ocks.org/d3noob/5141278) repository:
+Here's a [Directional Force Layout](http://bl.ocks.org/d3noob/5141278) repository (original code from @d3noob):
 
 https://github.com/dnprock/document_template
 
