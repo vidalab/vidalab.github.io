@@ -47,7 +47,7 @@ Here's a [Directional Force Layout](http://bl.ocks.org/d3noob/5141278) repositor
 
 https://github.com/dnprock/document_template
 
-You can import your GitHub repository into vida.io:
+You can quickly import your GitHub repository into vida.io:
 
 1. Login to vida.io
 2. Select D3 Documents
@@ -56,4 +56,4 @@ You can import your GitHub repository into vida.io:
 5. Paste your GitHub repository URL (e.g. https://github.com/dnprock/document_template)
 6. Click Import
 
-Viola! Now you have a force layout live in the cloud. You can share with your team and customers.
+Viola! Now you have a live visualization in the cloud. You can share with your team and customers.
