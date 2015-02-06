@@ -13,6 +13,8 @@ This tutorial is a guest post from [GRIDLEX](http://www.gridlex.com/) and [vHome
 
 [vHomeInsurance.com](http://vHomeInsurance.com), a home insurance analytics service, visualized US wide home property prices using Vida.io. The below guide walks through a case study on representing geographical data on a map & how they did it.
 
+<!-- more -->
+
 From the [vHomeInsurance.com](http://vHomeInsurance.com) Team:
 
 [Vida.io](https://vida.io) is a great place on the web to get the visualizations done. Using their templates, some complex map visualizations using D3.js can be done very easily, without much programing knowledge. The beauty of the tool is that only data needs to be plugged in and some styling elements edited, while it handles all the complexities itself. 
