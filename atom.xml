@@ -4,7 +4,7 @@
   <title><![CDATA[Data Visualization Code]]></title>
   <link href="http://blog.vida.io/atom.xml" rel="self"/>
   <link href="http://blog.vida.io/"/>
-  <updated>2015-02-05T18:11:38-08:00</updated>
+  <updated>2015-02-05T23:58:45-08:00</updated>
   <id>http://blog.vida.io/</id>
   <author>
     <name><![CDATA[Vida Lab]]></name>
@@ -18,11 +18,7 @@
     <link href="http://blog.vida.io/2015/02/05/visualizing-home-insurance-rates/"/>
     <updated>2015-02-05T17:34:11-08:00</updated>
     <id>http://blog.vida.io/2015/02/05/visualizing-home-insurance-rates</id>
-    <content type="html"><![CDATA[<p>This tutorial is a guest post from <a href="http://www.gridlex.com/">GRIDLEX</a> and <a href="http://vHomeInsurance.com">vHomeInsurance.com</a>. Visit their websites for more information.</p>
-
-<p><a href="http://www.gridlex.com/">GRIDLEX</a> is a data analytics firm based in New York.</p>
-
-<p><a href="http://vHomeInsurance.com">vHomeInsurance.com</a>, a home insurance analytics service, visualized US wide home property prices using Vida.io. The below guide walks through a case study on representing geographical data on a map &amp; how they did it.</p>
+    <content type="html"><![CDATA[<p>This tutorial is a guest post from <a href="http://vHomeInsurance.com">vHomeInsurance.com</a>, a home insurance analytics service, visualized US wide home property prices using Vida.io. The below guide walks through a case study on representing geographical data on a map &amp; how they did it.</p>
 
 <!-- more -->
 
@@ -352,7 +348,7 @@
 </div>
 
 
-<p>Check out the list of templates on <a href="https://vida.io/explore">vida.io/explore</a>. If you need more, contact us at <a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#58;&#x63;&#x6f;&#x6e;&#x74;&#97;&#99;&#x74;&#x40;&#x76;&#105;&#x64;&#x61;&#46;&#105;&#111;&#46;">&#x63;&#111;&#x6e;&#x74;&#x61;&#x63;&#116;&#64;&#118;&#x69;&#x64;&#97;&#x2e;&#x69;&#x6f;&#46;</a></p>
+<p>Check out the list of templates on <a href="https://vida.io/explore">vida.io/explore</a>. If you need more, contact us at <a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#x6f;&#x3a;&#x63;&#111;&#x6e;&#x74;&#x61;&#99;&#116;&#x40;&#x76;&#x69;&#100;&#x61;&#46;&#105;&#x6f;&#46;">&#x63;&#111;&#110;&#x74;&#x61;&#x63;&#116;&#x40;&#118;&#x69;&#x64;&#x61;&#46;&#105;&#x6f;&#x2e;</a></p>
 
 <p>With template, D3.js is easy to use, reuseable, and affordable. Add it to your toolbox for business intelligence and data analysis!</p>
 ]]></content>
