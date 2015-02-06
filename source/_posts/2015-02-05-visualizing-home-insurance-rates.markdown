@@ -66,7 +66,7 @@ var quantize = d3.scale.quantize()
                   .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
 ```
 
-Its of the form:
+It's of the form:
 
 ```javascript
 var quantize = d3.scale.quantize()
@@ -74,11 +74,13 @@ var quantize = d3.scale.quantize()
                   .range(d3.range(<Q>).map(function(i) { return "q" + i + "-9"; }));
 ```
 
-where:
+Where:
 
-<LOWEST> is the lowest value your data can have
-<HIGHEST> is the highest value your data can have
-<Q> is the number of quantization levels you want for your data, here it is number of colors you want to use in the cloropeth
+&lt;LOWEST&gt; is the lowest value your data can have
+
+&lt;HIGHEST&gt; is the highest value your data can have
+
+&lt;Q&gt; is the number of quantization levels you want for your data, here it is number of colors you want to use in the cloropeth
 
 Change those values according to your data and needs.
 
