@@ -4,7 +4,7 @@
   <title><![CDATA[Data Visualization Code]]></title>
   <link href="http://blog.vida.io/atom.xml" rel="self"/>
   <link href="http://blog.vida.io/"/>
-  <updated>2015-02-05T18:04:08-08:00</updated>
+  <updated>2015-02-05T18:05:18-08:00</updated>
   <id>http://blog.vida.io/</id>
   <author>
     <name><![CDATA[Vida Lab]]></name>
@@ -23,6 +23,9 @@
 <p><a href="http://www.gridlex.com/">GRIDLEX</a> is a data analytics firm based in New York.</p>
 
 <p><a href="http://vHomeInsurance.com">vHomeInsurance.com</a>, a home insurance analytics service, visualized US wide home property prices using Vida.io. The below guide walks through a case study on representing geographical data on a map &amp; how they did it.</p>
+
+<!-- more -->
+
 
 <p>From the <a href="http://vHomeInsurance.com">vHomeInsurance.com</a> Team:</p>
 
@@ -347,7 +350,7 @@
 </div>
 
 
-<p>Check out the list of templates on <a href="https://vida.io/explore">vida.io/explore</a>. If you need more, contact us at <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x63;&#x6f;&#110;&#x74;&#97;&#99;&#116;&#64;&#118;&#105;&#100;&#x61;&#46;&#105;&#x6f;&#46;">&#x63;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#x76;&#x69;&#x64;&#97;&#x2e;&#105;&#111;&#46;</a></p>
+<p>Check out the list of templates on <a href="https://vida.io/explore">vida.io/explore</a>. If you need more, contact us at <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#x74;&#97;&#x63;&#116;&#64;&#118;&#105;&#x64;&#97;&#46;&#x69;&#111;&#46;">&#99;&#111;&#110;&#x74;&#x61;&#99;&#x74;&#x40;&#118;&#x69;&#x64;&#97;&#x2e;&#x69;&#111;&#x2e;</a></p>
 
 <p>With template, D3.js is easy to use, reuseable, and affordable. Add it to your toolbox for business intelligence and data analysis!</p>
 ]]></content>
