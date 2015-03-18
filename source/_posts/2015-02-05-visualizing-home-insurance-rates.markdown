@@ -7,11 +7,7 @@ author: Phuoc Do
 categories: 
 ---
 
-This tutorial is a guest post from [GRIDLEX](http://www.gridlex.com/) and [vHomeInsurance.com](http://vHomeInsurance.com). Visit their websites for more information.
-
-[GRIDLEX](http://www.gridlex.com/) is a data analytics firm based in New York.
-
-[vHomeInsurance.com](http://vHomeInsurance.com), a home insurance analytics service, visualized US wide home property prices using Vida.io. The below guide walks through a case study on representing geographical data on a map & how they did it.
+This tutorial is a guest post from [vHomeInsurance.com](http://vHomeInsurance.com), a home insurance analytics service, visualized US wide home property prices using Vida.io. The below guide walks through a case study on representing geographical data on a map & how they did it.
 
 <!-- more -->
 
