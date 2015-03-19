@@ -4,7 +4,7 @@
   <title><![CDATA[Data Visualization Code]]></title>
   <link href="http://blog.vida.io/atom.xml" rel="self"/>
   <link href="http://blog.vida.io/"/>
-  <updated>2015-02-05T23:58:45-08:00</updated>
+  <updated>2015-03-19T13:57:18-07:00</updated>
   <id>http://blog.vida.io/</id>
   <author>
     <name><![CDATA[Vida Lab]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Interactive Dashboard With D3.js, Crossfilter, and Dc.js]]></title>
+    <link href="http://blog.vida.io/2015/03/19/interactive-dashboard-with-d3-dot-js-and-dc-dot-js/"/>
+    <updated>2015-03-19T13:43:36-07:00</updated>
+    <id>http://blog.vida.io/2015/03/19/interactive-dashboard-with-d3-dot-js-and-dc-dot-js</id>
+    <content type="html"><![CDATA[<p>We have built dashboards with Twitter and Sales data. The process are repetitive at chart level. We often want an easy way to swap in and out chart. A few customers ask us if they can put together dashboard themselves.</p>
+
+<p>We came up with a solution for this problem with Composite Document editor. It is an interactive tool that lets you put together dashboard. You can add d3.js documents to dashboard, resize them to fit the page. If your chart supports crossfilter, they will be linked together.</p>
+
+<!-- more -->
+
+
+<p>Here are dc.js components that we put together for you to use:</p>
+
+<ul>
+<li><a href="https://vida.io/documents/9KEahcjNZNbneEzKW">Area Chart</a></li>
+<li><a href="https://vida.io/documents/QMaJ8dgqGpjNkopfH">Day Filter</a></li>
+<li><a href="https://vida.io/documents/YaWNh5JJ4HjpY9Toa">Table</a></li>
+</ul>
+
+
+<p>Send us an email <a href="mailto:contact@vida.io">contact@vida.io</a> if you are looking for a d3.js document for your dashboard.</p>
+
+<p>We made a video demo of the feature. Link to document demo is below:</p>
+
+<p><a href="https://vida.io/compositeDocuments/wXMrqy7JCYmtSDikB">FAA Flights January 2015 Dashboard</a></p>
+
+<iframe width="420" height="315" src="https://www.youtube.com/embed/6CoKnV_oEiU" frameborder="0" allowfullscreen></iframe>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Visualizing Home Insurance Rates]]></title>
@@ -348,7 +380,7 @@
 </div>
 
 
-<p>Check out the list of templates on <a href="https://vida.io/explore">vida.io/explore</a>. If you need more, contact us at <a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#x6f;&#x3a;&#x63;&#111;&#x6e;&#x74;&#x61;&#99;&#116;&#x40;&#x76;&#x69;&#100;&#x61;&#46;&#105;&#x6f;&#46;">&#x63;&#111;&#110;&#x74;&#x61;&#x63;&#116;&#x40;&#118;&#x69;&#x64;&#x61;&#46;&#105;&#x6f;&#x2e;</a></p>
+<p>Check out the list of templates on <a href="https://vida.io/explore">vida.io/explore</a>. If you need more, contact us at <a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#x3a;&#x63;&#111;&#x6e;&#x74;&#x61;&#x63;&#116;&#x40;&#x76;&#x69;&#100;&#97;&#x2e;&#x69;&#x6f;&#46;">&#x63;&#111;&#x6e;&#116;&#x61;&#99;&#116;&#x40;&#x76;&#x69;&#100;&#97;&#x2e;&#105;&#x6f;&#46;</a></p>
 
 <p>With template, D3.js is easy to use, reuseable, and affordable. Add it to your toolbox for business intelligence and data analysis!</p>
 ]]></content>
