@@ -4,7 +4,7 @@
   <title><![CDATA[Data Visualization Code]]></title>
   <link href="http://blog.vida.io/atom.xml" rel="self"/>
   <link href="http://blog.vida.io/"/>
-  <updated>2015-03-19T13:57:18-07:00</updated>
+  <updated>2015-03-19T14:06:33-07:00</updated>
   <id>http://blog.vida.io/</id>
   <author>
     <name><![CDATA[Vida Lab]]></name>
@@ -40,7 +40,7 @@
 
 <p><a href="https://vida.io/compositeDocuments/wXMrqy7JCYmtSDikB">FAA Flights January 2015 Dashboard</a></p>
 
-<iframe width="420" height="315" src="https://www.youtube.com/embed/6CoKnV_oEiU" frameborder="0" allowfullscreen></iframe>
+<iframe width="630" height="472" src="https://www.youtube.com/embed/6CoKnV_oEiU" frameborder="0" allowfullscreen></iframe>
 
 ]]></content>
   </entry>
@@ -380,7 +380,7 @@
 </div>
 
 
-<p>Check out the list of templates on <a href="https://vida.io/explore">vida.io/explore</a>. If you need more, contact us at <a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#x3a;&#x63;&#111;&#x6e;&#x74;&#x61;&#x63;&#116;&#x40;&#x76;&#x69;&#100;&#97;&#x2e;&#x69;&#x6f;&#46;">&#x63;&#111;&#x6e;&#116;&#x61;&#99;&#116;&#x40;&#x76;&#x69;&#100;&#97;&#x2e;&#105;&#x6f;&#46;</a></p>
+<p>Check out the list of templates on <a href="https://vida.io/explore">vida.io/explore</a>. If you need more, contact us at <a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#x74;&#97;&#99;&#116;&#64;&#x76;&#x69;&#x64;&#x61;&#x2e;&#x69;&#x6f;&#x2e;">&#x63;&#x6f;&#110;&#116;&#x61;&#99;&#x74;&#64;&#118;&#105;&#x64;&#97;&#x2e;&#x69;&#111;&#x2e;</a></p>
 
 <p>With template, D3.js is easy to use, reuseable, and affordable. Add it to your toolbox for business intelligence and data analysis!</p>
 ]]></content>
@@ -698,7 +698,7 @@
 
 <p>See tutorial video here:</p>
 
-<iframe width="420" height="315" src="//www.youtube.com/embed/PlH1MIrYY_M" frameborder="0" allowfullscreen></iframe>
+<iframe width="630" height="472" src="//www.youtube.com/embed/PlH1MIrYY_M" frameborder="0" allowfullscreen></iframe>
 
 ]]></content>
   </entry>
@@ -819,7 +819,7 @@
 
 <p>See tutorial video here:</p>
 
-<iframe width="420" height="315" src="//www.youtube.com/embed/5Jg7RLZC6s8" frameborder="0" allowfullscreen></iframe>
+<iframe width="630" height="472" src="//www.youtube.com/embed/5Jg7RLZC6s8" frameborder="0" allowfullscreen></iframe>
 
 ]]></content>
   </entry>
@@ -932,7 +932,7 @@
 
 <p>Video demo:</p>
 
-<iframe width="420" height="315" src="//www.youtube.com/embed/e1BOJnW9N3Q" frameborder="0" allowfullscreen></iframe>
+<iframe width="630" height="472" src="//www.youtube.com/embed/e1BOJnW9N3Q" frameborder="0" allowfullscreen></iframe>
 
 
 <p>In this post, we&rsquo;ll use this bl.ocks.org example for d3noob:</p>

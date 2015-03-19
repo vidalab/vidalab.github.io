@@ -2,7 +2,7 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://blog.vida.io/2014/05/28/experiment-with-d3-dot-js-in-the-cloud/</loc>
-        <lastmod>2014-05-28T12:02:40-07:00</lastmod>
+        <lastmod>2015-03-19T14:05:14-07:00</lastmod>
     </url>
     <url>
         <loc>http://blog.vida.io/2014/05/31/embed-d3-dot-js-visualization-to-blog/</loc>
@@ -16,11 +16,11 @@
     </url>
     <url>
         <loc>http://blog.vida.io/2014/06/23/coding-visualization-tutorial-1-variables/</loc>
-        <lastmod>2014-06-24T14:01:30-07:00</lastmod>
+        <lastmod>2015-03-19T14:06:23-07:00</lastmod>
     </url>
     <url>
         <loc>http://blog.vida.io/2014/06/23/coding-visualization-tutorial-2-functions/</loc>
-        <lastmod>2014-06-25T11:53:09-07:00</lastmod>
+        <lastmod>2015-03-19T14:06:32-07:00</lastmod>
     </url>
     <url>
         <loc>http://blog.vida.io/2014/07/06/bigquery-big-data-visualization-with-d3-dot-js/</loc>
@@ -44,15 +44,15 @@
         <loc>
             http://blog.vida.io/2015/03/19/interactive-dashboard-with-d3-dot-js-and-dc-dot-js/
         </loc>
-        <lastmod>2015-03-19T13:57:17-07:00</lastmod>
+        <lastmod>2015-03-19T14:03:15-07:00</lastmod>
     </url>
     <url>
         <loc>http://blog.vida.io/</loc>
-        <lastmod>2015-03-19T13:57:17-07:00</lastmod>
+        <lastmod>2015-03-19T14:06:32-07:00</lastmod>
     </url>
     <url>
         <loc>http://blog.vida.io/posts/</loc>
-        <lastmod>2015-03-19T13:57:17-07:00</lastmod>
+        <lastmod>2015-03-19T14:06:32-07:00</lastmod>
     </url>
     <url>
         <loc>http://blog.vida.io/robots.txt</loc>
