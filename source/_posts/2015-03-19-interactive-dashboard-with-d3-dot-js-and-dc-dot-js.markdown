@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Interactive Dashboard with d3.js, crossfilter, and dc.js"
+title: "Interactive Dashboard with D3.js, crossfilter, and Dc.js"
 date: 2015-03-19 13:43:36 -0700
 comments: true
 author: Phuoc Do
