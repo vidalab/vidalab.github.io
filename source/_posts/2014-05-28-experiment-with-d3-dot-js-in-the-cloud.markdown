@@ -13,7 +13,7 @@ We are building a new offering at vida.io to enable cloud experimentation. You c
 
 Video demo:
 
-<iframe width="420" height="315" src="//www.youtube.com/embed/e1BOJnW9N3Q" frameborder="0" allowfullscreen></iframe>
+<iframe width="630" height="472" src="//www.youtube.com/embed/e1BOJnW9N3Q" frameborder="0" allowfullscreen></iframe>
 
 In this post, we'll use this bl.ocks.org example for d3noob:
 

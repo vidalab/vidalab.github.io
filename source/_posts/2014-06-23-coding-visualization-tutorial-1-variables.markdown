@@ -73,4 +73,4 @@ https://vida.io/documents/eSGFToFs3gXk4LEwP
 
 See tutorial video here:
 
-<iframe width="420" height="315" src="//www.youtube.com/embed/5Jg7RLZC6s8" frameborder="0" allowfullscreen></iframe>
+<iframe width="630" height="472" src="//www.youtube.com/embed/5Jg7RLZC6s8" frameborder="0" allowfullscreen></iframe>

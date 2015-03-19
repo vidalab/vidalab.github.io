@@ -25,4 +25,4 @@ We made a video demo of the feature. Link to document demo is below:
 
 [FAA Flights January 2015 Dashboard](https://vida.io/compositeDocuments/wXMrqy7JCYmtSDikB)
 
-<iframe width="420" height="315" src="https://www.youtube.com/embed/6CoKnV_oEiU" frameborder="0" allowfullscreen></iframe>
+<iframe width="630" height="472" src="https://www.youtube.com/embed/6CoKnV_oEiU" frameborder="0" allowfullscreen></iframe>

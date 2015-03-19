@@ -91,4 +91,4 @@ https://vida.io/documents/9Pst6wmB83BgRZXgx
 
 See tutorial video here:
 
-<iframe width="420" height="315" src="//www.youtube.com/embed/PlH1MIrYY_M" frameborder="0" allowfullscreen></iframe>
+<iframe width="630" height="472" src="//www.youtube.com/embed/PlH1MIrYY_M" frameborder="0" allowfullscreen></iframe>
