@@ -4,7 +4,7 @@
   <title><![CDATA[Data Visualization Code]]></title>
   <link href="http://blog.vida.io/atom.xml" rel="self"/>
   <link href="http://blog.vida.io/"/>
-  <updated>2015-03-19T14:06:33-07:00</updated>
+  <updated>2015-04-11T12:45:25-07:00</updated>
   <id>http://blog.vida.io/</id>
   <author>
     <name><![CDATA[Vida Lab]]></name>
@@ -18,7 +18,7 @@
     <link href="http://blog.vida.io/2015/03/19/interactive-dashboard-with-d3-dot-js-and-dc-dot-js/"/>
     <updated>2015-03-19T13:43:36-07:00</updated>
     <id>http://blog.vida.io/2015/03/19/interactive-dashboard-with-d3-dot-js-and-dc-dot-js</id>
-    <content type="html"><![CDATA[<p>We have built dashboards with Twitter and Sales data. The process are repetitive at chart level. We often want an easy way to swap in and out chart. A few customers ask us if they can put together dashboard themselves.</p>
+    <content type="html"><![CDATA[<p>We have built dashboards with Twitter and Sales data. The process is repetitive at chart level. We often want an easy way to swap in and out chart. A few customers ask us if they can put together dashboard themselves.</p>
 
 <p>We came up with a solution for this problem with Composite Document editor. It is an interactive tool that lets you put together dashboard. You can add d3.js documents to dashboard, resize them to fit the page. If your chart supports crossfilter, they will be linked together.</p>
 
@@ -380,7 +380,7 @@
 </div>
 
 
-<p>Check out the list of templates on <a href="https://vida.io/explore">vida.io/explore</a>. If you need more, contact us at <a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#x74;&#97;&#99;&#116;&#64;&#x76;&#x69;&#x64;&#x61;&#x2e;&#x69;&#x6f;&#x2e;">&#x63;&#x6f;&#110;&#116;&#x61;&#99;&#x74;&#64;&#118;&#105;&#x64;&#97;&#x2e;&#x69;&#111;&#x2e;</a></p>
+<p>Check out the list of templates on <a href="https://vida.io/explore">vida.io/explore</a>. If you need more, contact us at <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#99;&#111;&#110;&#x74;&#x61;&#x63;&#x74;&#x40;&#118;&#x69;&#100;&#x61;&#x2e;&#105;&#111;&#46;">&#99;&#111;&#110;&#116;&#97;&#x63;&#116;&#x40;&#x76;&#x69;&#x64;&#x61;&#46;&#105;&#111;&#46;</a></p>
 
 <p>With template, D3.js is easy to use, reuseable, and affordable. Add it to your toolbox for business intelligence and data analysis!</p>
 ]]></content>
