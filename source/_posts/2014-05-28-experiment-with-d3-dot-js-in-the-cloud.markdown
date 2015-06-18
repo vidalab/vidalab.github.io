@@ -9,7 +9,20 @@ categories:
 
 bl.ocks.org is a popular tool within D3 community for sharing data visualization. While it is great to be able to share visualization, bl.ocks.org is not easy to experiment with your visualization.
 
-We are building a new offering at vida.io to enable cloud experimentation. You can quickly import and play with the visualization.
+We are building a new offering at vida.io to enable cloud experimentation. You can quickly import and play with the visualization. There are two ways to import d3.js block into vida.io. The first way is directly from gist. The second way is to create a reusable template document.
+
+<b>Import gist or block</b>
+
+Video demo:
+
+<iframe width="630" height="472" src="https://www.youtube.com/embed/ZOSiMGcBtug" frameborder="0" allowfullscreen></iframe>
+
+1. Copy Gist (Block) URL
+2. Login to vida.io and select Gists (Blocks) menu
+3. Click on Import button and paste in the URL
+4. Click Create button
+
+<b>Create a resuable template document from gist or block</b>
 
 Video demo:
 
