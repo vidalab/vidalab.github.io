@@ -12,8 +12,10 @@ Google Spreadsheet offers a convenient way to work with data on the web. It is n
 We make use of tabletop.js to abstract data retrieval task.
 https://github.com/jsoma/tabletop
 
-1. Move d3.js visualization code into a function, e.g. drawChart.
-2. Use tabletop.js to get data and render the visualization:
+1. Publish spreadsheet to the web.
+2. Move d3.js visualization code into a function, e.g. drawChart.
+3. Use tabletop.js to get data and render the visualization.
+4. Copy published spreadsheet URL and replace it in the code below.
 
 ```javascript
     var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1n-PIdnAJnxmHqVp_iE2g1k8UpPf-lEXLm_pu7zxuov4/pubhtml';
