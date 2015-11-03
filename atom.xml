@@ -4,7 +4,7 @@
   <title><![CDATA[Data Visualization Code]]></title>
   <link href="http://blog.vida.io/atom.xml" rel="self"/>
   <link href="http://blog.vida.io/"/>
-  <updated>2015-11-02T16:53:41-08:00</updated>
+  <updated>2015-11-02T17:00:09-08:00</updated>
   <id>http://blog.vida.io/</id>
   <author>
     <name><![CDATA[Vida Lab]]></name>
@@ -24,8 +24,10 @@
 <a href="https://github.com/jsoma/tabletop">https://github.com/jsoma/tabletop</a></p>
 
 <ol>
+<li>Publish spreadsheet to the web.</li>
 <li>Move d3.js visualization code into a function, e.g. drawChart.</li>
-<li>Use tabletop.js to get data and render the visualization:</li>
+<li>Use tabletop.js to get data and render the visualization.</li>
+<li>Copy published spreadsheet URL and replace it in the code below.</li>
 </ol>
 
 
@@ -433,7 +435,7 @@
 </div>
 
 
-<p>Check out the list of templates on <a href="https://vida.io/explore">vida.io/explore</a>. If you need more, contact us at <a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#x3a;&#x63;&#111;&#x6e;&#x74;&#97;&#99;&#116;&#x40;&#x76;&#105;&#x64;&#x61;&#46;&#105;&#111;&#x2e;">&#x63;&#111;&#110;&#116;&#97;&#99;&#x74;&#x40;&#x76;&#105;&#x64;&#x61;&#46;&#105;&#111;&#x2e;</a></p>
+<p>Check out the list of templates on <a href="https://vida.io/explore">vida.io/explore</a>. If you need more, contact us at <a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#x3a;&#99;&#x6f;&#x6e;&#x74;&#97;&#99;&#x74;&#64;&#118;&#x69;&#100;&#97;&#x2e;&#x69;&#x6f;&#46;">&#x63;&#x6f;&#x6e;&#x74;&#x61;&#x63;&#x74;&#x40;&#118;&#105;&#100;&#97;&#x2e;&#105;&#x6f;&#x2e;</a></p>
 
 <p>With template, D3.js is easy to use, reuseable, and affordable. Add it to your toolbox for business intelligence and data analysis!</p>
 ]]></content>
