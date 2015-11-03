@@ -87,6 +87,95 @@ Coding data and visualization with Javascript, d3.js, and JSON. about me Vida La
           <div class="row">
             <div class="col-md-offset-3 col-md-6">
               <article>
+  <h2><a href="/2015/11/02/using-google-spreadsheet-data-in-d3-dot-js-visualizations/">Using Google Spreadsheet Data in d3.js Visualizations</a></h2>
+  
+  <p>
+    <p>Google Spreadsheet offers a convenient way to work with data on the web. It is now possible to retrieve live Google Spreadsheet data for d3.js visualizations. In this article, we&rsquo;ll show you how.</p>
+
+
+
+
+<p>We make use of tabletop.js to abstract data retrieval task.
+<a href="https://github.com/jsoma/tabletop">https://github.com/jsoma/tabletop</a></p>
+
+
+
+
+<ol>
+<li>Move d3.js visualization code into a function, e.g. drawChart.</li>
+<li>Use tabletop.js to get data and render the visualization:</li>
+</ol>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">public_spreadsheet_url</span> <span class="o">=</span> <span class="s1">&#39;<a href="https://docs.google.com/spreadsheets/d/1n-PIdnAJnxmHqVp_iE2g1k8UpPf-lEXLm_pu7zxuov4/pubhtml&amp;#39;">https://docs.google.com/spreadsheets/d/1n-PIdnAJnxmHqVp_iE2g1k8UpPf-lEXLm_pu7zxuov4/pubhtml&amp;#39;</a></span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">renderSpreadsheetData</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">Tabletop</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span> <span class="p">{</span> <span class="nx">key</span><span class="o">:</span> <span class="nx">public_spreadsheet_url</span><span class="p">,</span>
+</span><span class='line'>                     <span class="nx">callback</span><span class="o">:</span> <span class="nx">draw</span><span class="p">,</span>
+</span><span class='line'>                     <span class="nx">simpleSheet</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span> <span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">draw</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">tabletop</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// draw chart</span>
+</span><span class='line'>  <span class="nx">drawChart</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">renderSpreadsheetData</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>And a live example:</p>
+
+
+
+
+<p><a href="https://vida.io/documents/9eEyB4R74WWyrPXAi">https://vida.io/documents/9eEyB4R74WWyrPXAi</a></p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-11-02T16:46:08-08:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2015</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
   <h2><a href="/2015/03/19/interactive-dashboard-with-d3-dot-js-and-dc-dot-js/">Interactive Dashboard With D3.js, Crossfilter, and Dc.js</a></h2>
   
   <p>
@@ -583,102 +672,6 @@ Coding data and visualization with Javascript, d3.js, and JSON. about me Vida La
 
   
     <a class="full-article-link pull-right" rel="full-article" href="/2014/05/31/embed-d3-dot-js-visualization-to-blog/">Read on &rarr;</a>
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/2014/05/28/experiment-with-d3-dot-js-in-the-cloud/">Experiment With d3.js in the Cloud</a></h2>
-  
-  <p>
-    <p>bl.ocks.org is a popular tool within D3 community for sharing data visualization. While it is great to be able to share visualization, bl.ocks.org is not easy to experiment with your visualization.</p>
-
-
-
-
-<p>We are building a new offering at vida.io to enable cloud experimentation. You can quickly import and play with the visualization. There are two ways to import d3.js block into vida.io. The first way is directly from gist. The second way is to create a reusable template document.</p>
-
-
-
-
-<p><b>Import gist or block</b></p>
-
-
-
-
-<p>Video demo:</p>
-
-
-
-
-<iframe width="630" height="472" src="https://www.youtube.com/embed/ZOSiMGcBtug" frameborder="0" allowfullscreen></iframe>
-
-
-
-
-<ol>
-<li>Copy Gist (Block) URL</li>
-<li>Login to vida.io and select Gists (Blocks) menu</li>
-<li>Click on Import button and paste in the URL</li>
-<li>Click Create button</li>
-</ol>
-
-
-
-
-<p><b>Create a resuable template document from gist or block</b></p>
-
-
-
-
-<p>Video demo:</p>
-
-
-
-
-<iframe width="630" height="472" src="//www.youtube.com/embed/e1BOJnW9N3Q" frameborder="0" allowfullscreen></iframe>
-
-
-
-
-<p>In this post, we&rsquo;ll use this bl.ocks.org example for d3noob:</p>
-
-
-
-
-<p><a href="http://bl.ocks.org/d3noob/5141278">Basic Directional Force Layout Diagram</a></p>
-
-
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-05-28T00:12:31-07:00" pubdate data-updated="true">May 28<span>th</span>, 2014</time>
-    
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/2014/05/28/experiment-with-d3-dot-js-in-the-cloud/">Read on &rarr;</a>
   
 </article>
 

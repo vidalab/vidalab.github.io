@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Using Google Spreadsheet Data in d3.js Visualizations - Data Visualization Code</title>
+  <meta name="author" content="Vida Lab">
+
+  
+  <meta name="description" content="Using Google Spreadsheet Data in d3.js Visualizations written Nov 2nd, 2015 Google Spreadsheet offers a convenient way to work with data on the web &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.vida.io/2015/11/02/using-google-spreadsheet-data-in-d3-dot-js-visualizations">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Data Visualization Code" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43778465-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Using Google Spreadsheet Data in d3.js Visualizations</h1>
+        <div class="meta">
+          written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-11-02T16:46:08-08:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2015</time>
+          
+
+
+        </div>
+        <p>Google Spreadsheet offers a convenient way to work with data on the web. It is now possible to retrieve live Google Spreadsheet data for d3.js visualizations. In this article, we&rsquo;ll show you how.</p>
+
+<p>We make use of tabletop.js to abstract data retrieval task.
+<a href="https://github.com/jsoma/tabletop">https://github.com/jsoma/tabletop</a></p>
+
+<ol>
+<li>Move d3.js visualization code into a function, e.g. drawChart.</li>
+<li>Use tabletop.js to get data and render the visualization:</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">public_spreadsheet_url</span> <span class="o">=</span> <span class="s1">&#39;https://docs.google.com/spreadsheets/d/1n-PIdnAJnxmHqVp_iE2g1k8UpPf-lEXLm_pu7zxuov4/pubhtml&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">renderSpreadsheetData</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">Tabletop</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span> <span class="p">{</span> <span class="nx">key</span><span class="o">:</span> <span class="nx">public_spreadsheet_url</span><span class="p">,</span>
+</span><span class='line'>                     <span class="nx">callback</span><span class="o">:</span> <span class="nx">draw</span><span class="p">,</span>
+</span><span class='line'>                     <span class="nx">simpleSheet</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span> <span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">draw</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">tabletop</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// draw chart</span>
+</span><span class='line'>  <span class="nx">drawChart</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">renderSpreadsheetData</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And a live example:</p>
+
+<p><a href="https://vida.io/documents/9eEyB4R74WWyrPXAi">https://vida.io/documents/9eEyB4R74WWyrPXAi</a></p>
+
+        
+        <hr class="divider-short"/>
+        
+        
+          <section>
+            <h1>Comments</h1>
+            <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+          </section>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/2015/03/19/interactive-dashboard-with-d3-dot-js-and-dc-dot-js/" title="Previous Post: Interactive Dashboard with D3.js, crossfilter, and Dc.js">&laquo; Previous: Interactive Dashboard with D3.js, crossfilter, and Dc.js</a>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+    <a href="https://twitter.com/vidatalk"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+
+    
+
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Brought to you by <a href="https://vida.io">vida.io</a>. Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'blogvidaio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.vida.io/2015/11/02/using-google-spreadsheet-data-in-d3-dot-js-visualizations/';
+        var disqus_url = 'http://blog.vida.io/2015/11/02/using-google-spreadsheet-data-in-d3-dot-js-visualizations/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+  </body>
+</html>
