@@ -87,6 +87,192 @@ Coding data and visualization with Javascript, d3.js, and JSON. about me Vida La
           <div class="row">
             <div class="col-md-offset-3 col-md-6">
               <article>
+  <h2><a href="/2016/05/05/hacker-news-dashboard-with-vida-dot-io-and-google-bigquery/">Hacker News Dashboard With vida.io and Google BigQuery</a></h2>
+  
+  <p>
+    <p>Google BigQuery provides data storage for large datasets. You can store Gigabytes of data and query them in seconds. In this article, we discuss how to connect to Google BigQuery and create a dashboard. We&rsquo;ll use the Hacker News dataset provided in BigQuery public data repository.</p>
+
+
+
+
+<p>The final dashboard has four charts. Here&rsquo;s a screenshot of what it will look like:</p>
+
+
+
+
+<p><img src="http://i.imgur.com/SgRReJU.png" width="100%" title="Final Dashboard" /></p>
+
+
+
+
+<p>First, we&rsquo;ll create four datasets. We will send query to Google BigQuery through a REST API proxy:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT a.month month, stories, comments, comment_authors, story_authors &lt;/span>
+</span><span class='line'><span class="s2">  FROM ( &lt;/span>
+</span><span class='line'><span class="s2">    SELECT STRFTIME_UTC_USEC(time_ts, &#39;%Y-%m&#39;) month, COUNT(<em>) stories, EXACT_COUNT_DISTINCT(author) story_authors &lt;/span>
+</span><span class='line'><span class="s2">    FROM [fh-bigquery:hackernews.stories]  &lt;/span>
+</span><span class='line'><span class="s2">    GROUP BY 1 &lt;/span>
+</span><span class='line'><span class="s2">  ) a &lt;/span>
+</span><span class='line'><span class="s2">  JOIN ( &lt;/span>
+</span><span class='line'><span class="s2">    SELECT STRFTIME_UTC_USEC(time_ts, &#39;%Y-%m&#39;) month, COUNT(</em>) comments, EXACT_COUNT_DISTINCT(author) comment_authors &lt;/span>
+</span><span class='line'><span class="s2">    FROM [fh-bigquery:hackernews.comments]  &lt;/span>
+</span><span class='line'><span class="s2">    GROUP BY 1 &lt;/span>
+</span><span class='line'><span class="s2">  ) b &lt;/span>
+</span><span class='line'><span class="s2">  ON a.month=b.month &lt;/span>
+</span><span class='line'><span class="s2">  ORDER BY 1&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">&quot;<a href="https://pyapi-vida.herokuapp.com/bigquery&amp;quot;">https://pyapi-vida.herokuapp.com/bigquery&amp;quot;</a></span><span class="p">,</span> <span class="nx">query</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">bqData</span> <span class="o">=</span> <span class="p">[];</span>
+</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">bqd</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'>      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">bqd</span><span class="p">[</span><span class="nx">result</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="nx">key</span><span class="p">].</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">key</span><span class="p">];</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="nx">bqData</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">bqd</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">callback</span><span class="p">(</span><span class="nx">bqData</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Here are the links to the 4 datasets that we use:</p>
+
+
+
+
+<ul>
+<li><a href="https://vida.io/datasets/MqCFLnsmpyxxg9Dsx">Hacker News &ndash; Type Count over Time</a></li>
+<li><a href="https://vida.io/datasets/Rp43GosAhzS5Zhfbo">Hacker News &ndash; Type Count Summary</a></li>
+<li><a href="https://vida.io/datasets/YPpNt8NqRw9ZbD6Lv">Hacker News &ndash; Number of Comments during Day</a></li>
+<li><a href="https://vida.io/datasets/RqegcX8kAHJLiB4DA">Hacker News &ndash; Probability of Having Top Comments</a></li>
+</ul>
+
+
+
+
+<p>After creating 4 datasets, we go to Dashboards tab and create new dashboard. We&rsquo;ll add 1 line chart and 4 bar charts.</p>
+
+
+
+
+<ul>
+<li><p>Line Chart &ndash; Type Count over Time</p>
+
+<ol>
+<li>Select dataset &ldquo;Hacker News &ndash; Type Count over Time&rdquo;.</li>
+<li>Set X Axis to Month.</li>
+<li>Set X Axis Label to Month.</li>
+<li>Set Y Axis Label to Count.</li>
+<li>Set Y Axis to: stories[new line]comments[new line]comment authors[new line]story_authors.</li>
+<li>Set Title to: Type Count over Time.</li>
+</ol>
+</li>
+<li><p>Bar Chart &ndash; Type Count Summary</p>
+
+<ol>
+<li>Select dataset &ldquo;Hacker News &ndash; Type Count Summary&rdquo;.</li>
+<li>Set X Axis to Type.</li>
+<li>Set X Axis Label to Type.</li>
+<li>Set Y Axis Label to Count.</li>
+<li>Set Y Axis to count.</li>
+<li>Set Title to: Type Count Summary.</li>
+</ol>
+</li>
+<li><p>Bar Chart &ndash; Number of Comments during Day</p>
+
+<ol>
+<li>Select dataset &ldquo;Hacker News &ndash; Number of Comments during Day&rdquo;.</li>
+<li>Set X Axis to Hour.</li>
+<li>Set X Axis Label to Hour.</li>
+<li>Set Y Axis Label to Count.</li>
+<li>Set Y Axis to count.</li>
+<li>Set Title to: Number of Comments during Day.</li>
+</ol>
+</li>
+<li><p>Bar Chart &ndash; Probability of Having Top Comments</p>
+
+<ol>
+<li>Select dataset &ldquo;Hacker News &ndash; Probability of Having Top Comments&rdquo;</li>
+<li>Set X Axis to Hour.</li>
+<li>Set X Axis Label to Hour.</li>
+<li>Set Y Axis Label to Probability.</li>
+<li>Set Y Axis to prob.</li>
+<li>Set Title to: Probability of Having Top Comments.</li>
+</ol>
+</li>
+</ul>
+
+
+
+
+<p>Here&rsquo;s a video demo of the entire process:</p>
+
+
+
+
+<iframe width="630" height="472" src="//www.youtube.com/embed/u4xoofChZrk" frameborder="0" allowfullscreen></iframe>
+
+
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2016-05-05T17:22:36-07:00" pubdate data-updated="true">May 5<span>th</span>, 2016</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
   <h2><a href="/2015/11/02/using-google-spreadsheet-data-in-d3-dot-js-visualizations/">Using Google Spreadsheet Data in d3.js Visualizations</a></h2>
   
   <p>
@@ -628,52 +814,6 @@ Coding data and visualization with Javascript, d3.js, and JSON. about me Vida La
 
   
     <a class="full-article-link pull-right" rel="full-article" href="/2014/06/08/extract-web-data-with-import-dot-io-and-create-d3-visualization/">Read on &rarr;</a>
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/2014/05/31/embed-d3-dot-js-visualization-to-blog/">Embed d3.js Visualization to Blog</a></h2>
-  
-  <p>
-    <p>I recently got a question from our user on how to embed d3.js visualization into their blog. A quick search returns several solutions like bl.ocks.org or Wordpress D3 plugin. The first solution requires programmer intervention each time content owner needs to update the site. Wordpress D3 plugin requires installation of plugin.</p>
-
-
-
-
-<p>There comes <a href="https://vida.io">vida.io</a> embed. Our site provides simple solution. Blog content owner can update post without programmer&rsquo;s intervention. In case of visualization update, he/she can use <a href="https://vida.io">vida.io</a> editor to quickly make change.</p>
-
-
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-05-31T23:54:14-07:00" pubdate data-updated="true">May 31<span>st</span>, 2014</time>
-    
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/2014/05/31/embed-d3-dot-js-visualization-to-blog/">Read on &rarr;</a>
   
 </article>
 
