@@ -4,7 +4,7 @@ title: "Using Google Spreadsheet data in d3.js visualizations"
 date: 2015-11-02 16:46:08 -0800
 comments: true
 author: Phuoc Do
-categories: 
+categories:
 ---
 
 Google Spreadsheet offers a convenient way to work with data on the web. It is now possible to retrieve live Google Spreadsheet data for d3.js visualizations. In this article, we'll show you how.
