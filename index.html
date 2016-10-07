@@ -105,10 +105,40 @@ Coding data and visualization with Javascript, d3.js, and JSON. about me Vida La
 
 
 
-<p>First, we&rsquo;ll create four datasets. We will send query to Google BigQuery through a REST API proxy:</p>
+<p>First, we&rsquo;ll create a data source for Google BigQuery.</p>
 
 
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+
+<ol>
+<li>After login, click on Source tab and New Source button.</li>
+<li>Name your source: Hacker News (BigQuery).</li>
+<li>Select database type BigQuery.</li>
+<li>Upload your credentials file. Click <a href="https://cloud.google.com/storage/docs/authentication#generating-a-private-key">here</a> for instruction to generate the file.</li>
+</ol>
+
+
+
+
+<p>Next, we&rsquo;ll create four datasets.</p>
+
+
+
+
+<ol>
+<li>Click on Datasets tab and New Dataset button.</li>
+<li>Click on Add SQL Query button.</li>
+<li>Select the database source we just created: Hacker News (BigQuery).</li>
+<li>Paste in the queries below for each dataset.</li>
+</ol>
+
+
+
+
+<p>Type Count over Time</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -121,46 +151,63 @@ Coding data and visualization with Javascript, d3.js, and JSON. about me Vida La
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT a.month month, stories, comments, comment_authors, story_authors &lt;/span>
-</span><span class='line'><span class="s2">  FROM ( &lt;/span>
-</span><span class='line'><span class="s2">    SELECT STRFTIME_UTC_USEC(time_ts, &#39;%Y-%m&#39;) month, COUNT(<em>) stories, EXACT_COUNT_DISTINCT(author) story_authors &lt;/span>
-</span><span class='line'><span class="s2">    FROM [fh-bigquery:hackernews.stories]  &lt;/span>
-</span><span class='line'><span class="s2">    GROUP BY 1 &lt;/span>
-</span><span class='line'><span class="s2">  ) a &lt;/span>
-</span><span class='line'><span class="s2">  JOIN ( &lt;/span>
-</span><span class='line'><span class="s2">    SELECT STRFTIME_UTC_USEC(time_ts, &#39;%Y-%m&#39;) month, COUNT(</em>) comments, EXACT_COUNT_DISTINCT(author) comment_authors &lt;/span>
-</span><span class='line'><span class="s2">    FROM [fh-bigquery:hackernews.comments]  &lt;/span>
-</span><span class='line'><span class="s2">    GROUP BY 1 &lt;/span>
-</span><span class='line'><span class="s2">  ) b &lt;/span>
-</span><span class='line'><span class="s2">  ON a.month=b.month &lt;/span>
-</span><span class='line'><span class="s2">  ORDER BY 1&quot;</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">&quot;<a href="https://pyapi-vida.herokuapp.com/bigquery&amp;quot;">https://pyapi-vida.herokuapp.com/bigquery&amp;quot;</a></span><span class="p">,</span> <span class="nx">query</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">bqData</span> <span class="o">=</span> <span class="p">[];</span>
-</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">bqd</span> <span class="o">=</span> <span class="p">{};</span>
-</span><span class='line'>      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="p">{</span>
-</span><span class='line'>        <span class="nx">bqd</span><span class="p">[</span><span class="nx">result</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="nx">key</span><span class="p">].</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">key</span><span class="p">];</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>      <span class="nx">bqData</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">bqd</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nx">callback</span><span class="p">(</span><span class="nx">bqData</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure></p>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT a.month month, stories, comments, comment_authors, story_authors
+</span><span class='line'>FROM (
+</span><span class='line'>  SELECT STRFTIME_UTC_USEC(time_ts, &lsquo;%Y-%m&rsquo;) month, COUNT(<em>) stories, EXACT_COUNT_DISTINCT(author) story_authors
+</span><span class='line'>  FROM [fh-bigquery:hackernews.stories]
+</span><span class='line'>  GROUP BY 1
+</span><span class='line'>) a
+</span><span class='line'>JOIN (
+</span><span class='line'>  SELECT STRFTIME_UTC_USEC(time_ts, &lsquo;%Y-%m&rsquo;) month, COUNT(</em>) comments, EXACT_COUNT_DISTINCT(author) comment_authors
+</span><span class='line'>  FROM [fh-bigquery:hackernews.comments]
+</span><span class='line'>  GROUP BY 1
+</span><span class='line'>) b
+</span><span class='line'>ON a.month=b.month
+</span><span class='line'>ORDER BY 1</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Type Count Summary</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT type, COUNT(*) count
+</span><span class='line'>FROM [fh-bigquery:hackernews.full_201510]
+</span><span class='line'>GROUP BY 1
+</span><span class='line'>ORDER BY 2
+</span><span class='line'>LIMIT 100</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Number of Comments during Day</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT HOUR(SEC_TO_TIMESTAMP(time-3600<em>7)) hour, COUNT(</em>) comments, AVG(ranking) avg_ranking, SUM(ranking=0)/COUNT(*) prob
+</span><span class='line'>FROM [fh-bigquery:hackernews.comments]
+</span><span class='line'>WHERE YEAR(time_ts)=2015
+</span><span class='line'>GROUP BY 1
+</span><span class='line'>ORDER BY 1</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Probability of Having Top Comments</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT HOUR(SEC_TO_TIMESTAMP(time-3600<em>7)) hour, COUNT(</em>) comments, AVG(ranking) avg_ranking, SUM(ranking=0)/COUNT(*) prob
+</span><span class='line'>FROM [fh-bigquery:hackernews.comments]
+</span><span class='line'>WHERE YEAR(time_ts)=2015
+</span><span class='line'>AND parent IN (SELECT id FROM [fh-bigquery:hackernews.stories] WHERE score&gt;10)
+</span><span class='line'>GROUP BY 1
+</span><span class='line'>ORDER BY 1</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Here are the links to the 4 datasets that we use:</p>
 
@@ -168,16 +215,16 @@ Coding data and visualization with Javascript, d3.js, and JSON. about me Vida La
 
 
 <ul>
-<li><a href="https://vida.io/datasets/MqCFLnsmpyxxg9Dsx">Hacker News &ndash; Type Count over Time</a></li>
-<li><a href="https://vida.io/datasets/Rp43GosAhzS5Zhfbo">Hacker News &ndash; Type Count Summary</a></li>
-<li><a href="https://vida.io/datasets/YPpNt8NqRw9ZbD6Lv">Hacker News &ndash; Number of Comments during Day</a></li>
-<li><a href="https://vida.io/datasets/RqegcX8kAHJLiB4DA">Hacker News &ndash; Probability of Having Top Comments</a></li>
+<li><a href="https://vida.io/datasets/DvPDG5HfxpDNkEMQ3">Hacker News &ndash; Type Count over Time</a></li>
+<li><a href="https://vida.io/datasets/TGc5ytt99pQnLP9Gg">Hacker News &ndash; Type Count Summary</a></li>
+<li><a href="https://vida.io/datasets/hNN5Hmf762NYuyYQQ">Hacker News &ndash; Number of Comments during Day</a></li>
+<li><a href="https://vida.io/datasets/Qzicd7DFjy5mKTbL2">Hacker News &ndash; Probability of Having Top Comments</a></li>
 </ul>
 
 
 
 
-<p>After creating 4 datasets, we go to Dashboards tab and create new dashboard. We&rsquo;ll add 1 line chart and 4 bar charts.</p>
+<p>After creating 4 datasets, we go to Dashboards tab and create new dashboard. We&rsquo;ll add 1 line chart and 3 bar charts.</p>
 
 
 
@@ -237,7 +284,7 @@ Coding data and visualization with Javascript, d3.js, and JSON. about me Vida La
 
 
 
-<iframe width="630" height="472" src="//www.youtube.com/embed/u4xoofChZrk" frameborder="0" allowfullscreen></iframe>
+<iframe width="630" height="472" src="//www.youtube.com/embed/BGfTa_wKjK4" frameborder="0" allowfullscreen></iframe>
 
 
 
