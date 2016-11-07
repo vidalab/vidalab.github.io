@@ -13,6 +13,8 @@ The final dashboard has four charts. Here's a screenshot of what it will look li
 
 <img src="http://i.imgur.com/SgRReJU.png" width="100%" title="Final Dashboard" />
 
+<!-- more -->
+
 First, we'll create a data source for Google BigQuery.
 
 1. After login, click on Source tab and New Source button.
