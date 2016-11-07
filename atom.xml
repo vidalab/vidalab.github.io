@@ -4,7 +4,7 @@
   <title><![CDATA[Data Visualization Code]]></title>
   <link href="http://blog.vida.io/atom.xml" rel="self"/>
   <link href="http://blog.vida.io/"/>
-  <updated>2016-10-06T19:30:45-07:00</updated>
+  <updated>2016-11-07T10:17:19-08:00</updated>
   <id>http://blog.vida.io/</id>
   <author>
     <name><![CDATA[Vida Lab]]></name>
@@ -12,6 +12,82 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Connect D3.js Visualization With SQL Database]]></title>
+    <link href="http://blog.vida.io/2016/11/06/connect-d3-dot-js-visualization-with-sql-database/"/>
+    <updated>2016-11-06T23:14:25-08:00</updated>
+    <id>http://blog.vida.io/2016/11/06/connect-d3-dot-js-visualization-with-sql-database</id>
+    <content type="html"><![CDATA[<p>Supported SQL databases: PostgreSQL, MySQL, MS SQL Server.</p>
+
+<p>D3.js visualizations often use CSV data files that are loaded into browser. In this article,
+we walk you through how to connect to SQL database on vida.io and use D3.js to visualize the data.</p>
+
+<p>The database contains data for view activities of website. We use calendar heatmap to visualize
+the frequency during months. The raw data table has 3 columns: views, created_at, and updated_at.</p>
+
+<p><img src="http://i.imgur.com/LYyl3lk.png" title="Raw Data" /></p>
+
+<!-- more -->
+
+
+<p>The first step we need to do is to connect to the PostgreSQL database. After login, we go to
+Sources section and create a new data source. We call it ACME PostgreSQL. For our example,
+we use the following connection settings:</p>
+
+<ol>
+<li>Hostname: localhost</li>
+<li>Port: 5432</li>
+<li>Username: postgres</li>
+<li>Password:</li>
+<li>Database name: acme_webapp</li>
+</ol>
+
+
+<p>Next, we create a dataset that reads from ACME PostgreSQL data source.</p>
+
+<ol>
+<li>Go to Datasets section and create a new dataset.</li>
+<li>We call it ACME Activities.</li>
+<li>Scroll to the bottom of the page and click &ldquo;Add SQL Query.&rdquo;</li>
+</ol>
+
+
+<p>Raw data points only record the event. We need to group and count the data happening during days.
+We use the following SQL query:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT TO_CHAR(created_at, 'MM/DD/YYYY') AS created, count(*) FROM activities GROUP BY created ORDER BY created;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The result dataset contains the following data:</p>
+
+<p><img src="http://i.imgur.com/3YUkuC2.png" title="Grouped Data" /></p>
+
+<p>Now, we create calendar heatmap visualization.</p>
+
+<ol>
+<li>Go to Documents section and click on &ldquo;New Document&rdquo; button.</li>
+<li>Select &ldquo;Import Vida&rdquo; under custom section. We use Calendar Heatmap template from vida.io.</li>
+<li>Paste in the following document ID &ldquo;Fmhxf9jxed5GY993X&rdquo; and click Import.
+The app will take us to the imported document.</li>
+<li>Click on Data tab and select &ldquo;Link External&rdquo; from Datasets menu. Note: this feature is
+available to subscribed user only. Please contact us if you have any question.</li>
+<li>Select &ldquo;ACME Activities&rdquo; dataset that we created earlier.</li>
+<li>Click on Save to refresh the document.</li>
+</ol>
+
+
+<p>The final visualization looks like below.</p>
+
+<p><img src="http://i.imgur.com/azVf8th.png" title="Grouped Data" /></p>
+
+<p>Here&rsquo;s a video demo of the entire process:</p>
+
+<iframe width="630" height="472" src="//www.youtube.com/embed/cyWDmGqfzHQ" frameborder="0" allowfullscreen></iframe>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hacker News Dashboard With vida.io and Google BigQuery]]></title>
@@ -23,6 +99,9 @@
 <p>The final dashboard has four charts. Here&rsquo;s a screenshot of what it will look like:</p>
 
 <p><img src="http://i.imgur.com/SgRReJU.png" width="100%" title="Final Dashboard" /></p>
+
+<!-- more -->
+
 
 <p>First, we&rsquo;ll create a data source for Google BigQuery.</p>
 
@@ -607,7 +686,7 @@
 </div>
 
 
-<p>Check out the list of templates on <a href="https://vida.io/explore">vida.io/explore</a>. If you need more, contact us at <a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#99;&#111;&#110;&#x74;&#x61;&#x63;&#x74;&#64;&#118;&#x69;&#x64;&#x61;&#x2e;&#x69;&#x6f;&#x2e;">&#x63;&#x6f;&#x6e;&#x74;&#97;&#99;&#x74;&#x40;&#118;&#x69;&#100;&#97;&#x2e;&#105;&#x6f;&#46;</a></p>
+<p>Check out the list of templates on <a href="https://vida.io/explore">vida.io/explore</a>. If you need more, contact us at <a href="&#x6d;&#x61;&#105;&#108;&#x74;&#111;&#58;&#99;&#x6f;&#110;&#x74;&#x61;&#x63;&#x74;&#64;&#118;&#105;&#100;&#x61;&#46;&#x69;&#x6f;&#46;">&#99;&#111;&#x6e;&#x74;&#x61;&#x63;&#x74;&#x40;&#118;&#x69;&#x64;&#x61;&#46;&#x69;&#x6f;&#46;</a></p>
 
 <p>With template, D3.js is easy to use, reuseable, and affordable. Add it to your toolbox for business intelligence and data analysis!</p>
 ]]></content>

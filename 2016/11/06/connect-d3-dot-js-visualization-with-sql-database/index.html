@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Connect D3.js Visualization With SQL Database - Data Visualization Code</title>
+  <meta name="author" content="Vida Lab">
+
+  
+  <meta name="description" content="Connect D3.js Visualization With SQL Database written Nov 6th, 2016 Supported SQL databases: PostgreSQL, MySQL, MS SQL Server. D3.js visualizations &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.vida.io/2016/11/06/connect-d3-dot-js-visualization-with-sql-database">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Data Visualization Code" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43778465-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Connect D3.js Visualization With SQL Database</h1>
+        <div class="meta">
+          written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2016-11-06T23:14:25-08:00" pubdate data-updated="true">Nov 6<span>th</span>, 2016</time>
+          
+
+
+        </div>
+        <p>Supported SQL databases: PostgreSQL, MySQL, MS SQL Server.</p>
+
+<p>D3.js visualizations often use CSV data files that are loaded into browser. In this article,
+we walk you through how to connect to SQL database on vida.io and use D3.js to visualize the data.</p>
+
+<p>The database contains data for view activities of website. We use calendar heatmap to visualize
+the frequency during months. The raw data table has 3 columns: views, created_at, and updated_at.</p>
+
+<p><img src="http://i.imgur.com/LYyl3lk.png" title="Raw Data" /></p>
+
+<!-- more -->
+
+
+<p>The first step we need to do is to connect to the PostgreSQL database. After login, we go to
+Sources section and create a new data source. We call it ACME PostgreSQL. For our example,
+we use the following connection settings:</p>
+
+<ol>
+<li>Hostname: localhost</li>
+<li>Port: 5432</li>
+<li>Username: postgres</li>
+<li>Password:</li>
+<li>Database name: acme_webapp</li>
+</ol>
+
+
+<p>Next, we create a dataset that reads from ACME PostgreSQL data source.</p>
+
+<ol>
+<li>Go to Datasets section and create a new dataset.</li>
+<li>We call it ACME Activities.</li>
+<li>Scroll to the bottom of the page and click &ldquo;Add SQL Query.&rdquo;</li>
+</ol>
+
+
+<p>Raw data points only record the event. We need to group and count the data happening during days.
+We use the following SQL query:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT TO_CHAR(created_at, 'MM/DD/YYYY') AS created, count(*) FROM activities GROUP BY created ORDER BY created;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The result dataset contains the following data:</p>
+
+<p><img src="http://i.imgur.com/3YUkuC2.png" title="Grouped Data" /></p>
+
+<p>Now, we create calendar heatmap visualization.</p>
+
+<ol>
+<li>Go to Documents section and click on &ldquo;New Document&rdquo; button.</li>
+<li>Select &ldquo;Import Vida&rdquo; under custom section. We use Calendar Heatmap template from vida.io.</li>
+<li>Paste in the following document ID &ldquo;Fmhxf9jxed5GY993X&rdquo; and click Import.
+The app will take us to the imported document.</li>
+<li>Click on Data tab and select &ldquo;Link External&rdquo; from Datasets menu. Note: this feature is
+available to subscribed user only. Please contact us if you have any question.</li>
+<li>Select &ldquo;ACME Activities&rdquo; dataset that we created earlier.</li>
+<li>Click on Save to refresh the document.</li>
+</ol>
+
+
+<p>The final visualization looks like below.</p>
+
+<p><img src="http://i.imgur.com/azVf8th.png" title="Grouped Data" /></p>
+
+<p>Here&rsquo;s a video demo of the entire process:</p>
+
+<iframe width="630" height="472" src="//www.youtube.com/embed/cyWDmGqfzHQ" frameborder="0" allowfullscreen></iframe>
+
+
+        
+        <hr class="divider-short"/>
+        
+        
+          <section>
+            <h1>Comments</h1>
+            <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+          </section>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/2016/05/05/hacker-news-dashboard-with-vida-dot-io-and-google-bigquery/" title="Previous Post: Hacker News Dashboard with vida.io and Google BigQuery">&laquo; Previous: Hacker News Dashboard with vida.io and Google BigQuery</a>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+    <a href="https://twitter.com/vidatalk"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+
+    
+
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Brought to you by <a href="https://vida.io">vida.io</a>. Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'blogvidaio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.vida.io/2016/11/06/connect-d3-dot-js-visualization-with-sql-database/';
+        var disqus_url = 'http://blog.vida.io/2016/11/06/connect-d3-dot-js-visualization-with-sql-database/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+  </body>
+</html>
